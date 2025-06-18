@@ -1,3 +1,33 @@
 {
-  "extends": "@react-native/typescript-config"
+  "extends": "@react-native/typescript-config",
+  "compilerOptions": {
+    "strict": true,
+    "jsx": "react-native",
+    "target": "ESNext",
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "types": [
+      "nativewind/types",
+      "react",
+      "react-native"
+    ]
+  },
+  "include": [
+    "src",
+    "App.tsx",
+    "tailwind.config.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
