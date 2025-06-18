@@ -1,8 +1,8 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {screens} from '../utils/constants';
-import LoginScreen from '../screens/LoginScreen';
-import SplashScreen from '../screens/SplashScreen';
+import {screens} from '@/utils/constants';
+import LoginScreen from '@/screens/LoginScreen';
+import SplashScreen from '@/screens/SplashScreen';
 import {navigationRef} from '@/utils/NavigationUtils';
 import HomeScreen from '@/screens/HomeScreen';
 
