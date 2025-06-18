@@ -1,9 +1,9 @@
 import apiClient from '../apiClient.ts';
-import {apis} from '../../utils/apis.ts';
-import {getRefreshToken, removeAccessToken, removeRefreshToken, setAccessToken, setRefreshToken} from '../storage.ts';
-import {resetAndNavigate} from '../../utils/NavigationUtils.ts';
-import {screens} from '../../utils/constants.ts';
+import {apis} from '@/utils/apis.ts';
 import axios from 'axios';
+import {getRefreshToken, removeAccessToken, removeRefreshToken, setAccessToken, setRefreshToken} from '../storage.ts';
+import {resetAndNavigate} from '@/utils/NavigationUtils.ts';
+import {screens} from '@/utils/constants.ts';
 
 export const loginWithGoogle = async (idToken: string) => {
     const {data} = await apiClient.post(apis.loginApi, {idToken});

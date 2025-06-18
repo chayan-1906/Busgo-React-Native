@@ -5,9 +5,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                okra: ['', 'Okra-Medium', 'Okra-ExtraBold', 'Okra-Bold', 'Okra-MediumLight'],
-                excali: ['Excali-Regular'],
-                montserratAlternates: ['M-Black', 'M-SemBold']
+                okra: ['Okra-Regular', 'Okra-Medium', 'Okra-ExtraBold', 'Okra-Bold', 'Okra-MediumLight'],
             },
             colors: {
                 primary: '#FC5431',

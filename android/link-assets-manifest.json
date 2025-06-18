@@ -2,18 +2,6 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "src/assets/fonts/Excali-Regular.ttf",
-      "sha1": "cbeb0f9d62c2bd052b62e2708898ad9d9589063c"
-    },
-    {
-      "path": "src/assets/fonts/M-Black.ttf",
-      "sha1": "ddfe711ee7b948f4105986d363e00f98b192d52c"
-    },
-    {
-      "path": "src/assets/fonts/M-SemiBold.ttf",
-      "sha1": "6127c80406ce668cd1d623c40e79a62de3f5d2e0"
-    },
-    {
       "path": "src/assets/fonts/Okra-Bold.ttf",
       "sha1": "fef01f34e3de57171aaef4d21430736a97a57e83"
     },
