@@ -1,9 +1,8 @@
 import {useState} from 'react';
-import {Alert, SafeAreaView, Text, View} from 'react-native';
+import {SafeAreaView, Text, View} from 'react-native';
 import {UserCircleIcon} from 'react-native-heroicons/solid';
 import {logout} from '@/service/requests/auth.ts';
 import Bookings from '@/components/home/Bookings.tsx';
-import DateTimePicker, {DateTimePickerEvent} from '@react-native-community/datetimepicker';
 
 function HomeScreen() {
     const [testDate, setTestDate] = useState(new Date());
@@ -17,7 +16,7 @@ function HomeScreen() {
                 <UserCircleIcon color={'red'} size={38} onPress={logout} />
             </View>
 
-            <View className={'h-80'}>
+            {/*<View className={'h-80'}>
                 <Text>Before DateTimePicker</Text>
                 <DateTimePicker
                     value={testDate}
@@ -35,9 +34,9 @@ function HomeScreen() {
                 <Text>{testDate?.toDateString()}</Text>
                 <Text>Timestamp: {testDate?.getTime()}</Text>
                 <Text>After DateTimePicker</Text>
-            </View>
+            </View>*/}
 
-            {/*<Bookings/>*/}
+            <Bookings/>
         </View>
     );
 }

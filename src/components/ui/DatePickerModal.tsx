@@ -6,24 +6,31 @@ import DateTimePicker, {DateTimePickerEvent} from '@react-native-community/datet
 function DatePickerModal({isVisible, onClose, onConfirm, selectedDate}: DatePickerModalProps) {
     const [tempDate, setTempDate] = useState(selectedDate);
 
-    useEffect(() => {
-        if (isVisible) {
-            setTempDate(selectedDate);
+    const onChange = (event: DateTimePickerEvent, selectedDate: Date | undefined) => {
+        if (selectedDate) {
+            onConfirm(selectedDate);
+            onClose();
         }
-    }, [isVisible, selectedDate]);
+    }
+
+    useEffect(() => {
+        // Alert.alert('tempDate changed', tempDate.toDateString());
+    }, [tempDate]);
 
     if (Platform.OS === 'android') {
+        /*DateTimePickerAndroid.open({
+            value: tempDate,
+            onChange,
+            mode: 'date',
+            is24Hour: true,
+        });
+        return <View/>;*/
         return (
             <DateTimePicker
                 value={tempDate}
                 mode={'date'}
-                display={'default'}
-                onChange={(event: DateTimePickerEvent, date: Date | undefined) => {
-                    if (date) {
-                        onConfirm(tempDate);
-                        onClose();
-                    }
-                }}
+                display={'compact'}
+                onChange={onChange}
             />
         );
     }
@@ -34,7 +41,7 @@ function DatePickerModal({isVisible, onClose, onConfirm, selectedDate}: DatePick
                 <View className={'bg-white p-4 rounded-3xl mx-2'}>
                     {Platform.OS === 'ios' && (
                         <View className={'h-96'}>
-                            <DateTimePicker value={tempDate} mode={'date'} display={'inline'} onChange={(event: DateTimePickerEvent, date: Date | undefined) => date && setTempDate(date)} style={{flex: 1}} />
+                            <DateTimePicker value={tempDate} mode={'date'} display={'inline'} onChange={(event: DateTimePickerEvent, date: Date | undefined) => date && setTempDate(date)} style={{flex: 1}}/>
                         </View>
                     )}
                     <Text>{tempDate?.toDateString()}</Text>

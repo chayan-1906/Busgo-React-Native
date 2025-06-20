@@ -1,4 +1,4 @@
-import {ActivityIndicator, Alert, FlatList, RefreshControl, Text, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, FlatList, RefreshControl, Text, TouchableOpacity, View} from 'react-native';
 import {useCallback, useEffect, useState} from 'react';
 import {tabs} from '@/utils/dummyData.ts';
 import Search from '@/components/ui/Search.tsx';
@@ -7,7 +7,6 @@ import {getTicketsForUser} from '@/service/requests/bus.ts';
 import {useFocusEffect} from '@react-navigation/native';
 import BookItem from '@/components/home/BookItem.tsx';
 import {ITicket} from '@/types';
-import DateTimePicker, {DateTimePickerEvent} from '@react-native-community/datetimepicker';
 
 function Bookings() {
     const [selectedTab, setSelectedTab] = useState<(typeof tabs)[number]>('All');
@@ -28,6 +27,7 @@ function Bookings() {
     const onRefresh = async () => {
         setIsRefreshing(true);
         await refetch();
+        setIsRefreshing(false);
     };
 
     useFocusEffect(
