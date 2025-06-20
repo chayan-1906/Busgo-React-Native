@@ -4,7 +4,7 @@ import {getAccessToken, getRefreshToken} from '@/service/storage';
 import {resetAndNavigate} from '@/utils/NavigationUtils.ts';
 import {screens} from '@/utils/constants.ts';
 import {jwtDecode} from 'jwt-decode';
-import {DecodedToken} from '@/types';
+import {IDecodedToken} from '@/types';
 import {refreshTokens} from '@/service/requests/auth.ts';
 
 function SplashScreen() {
@@ -13,8 +13,8 @@ function SplashScreen() {
         const refreshToken = getRefreshToken() as string;
 
         if (accessToken) {
-            const decodedAccessToken = jwtDecode<DecodedToken>(accessToken);
-            const decodedRefreshToken = jwtDecode<DecodedToken>(refreshToken);
+            const decodedAccessToken = jwtDecode<IDecodedToken>(accessToken);
+            const decodedRefreshToken = jwtDecode<IDecodedToken>(refreshToken);
 
             const currentTime = Date.now() / 1000;
             if (decodedRefreshToken?.exp < currentTime) {

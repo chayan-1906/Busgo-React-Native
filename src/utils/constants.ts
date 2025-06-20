@@ -11,6 +11,7 @@ export const screens = {
     splashScreen: 'SplashScreen',
     loginScreen: 'LoginScreen',
     homeScreen: 'HomeScreen',
+    busListScreen: 'BusListScreen',
 }
 
 export const storage = {
