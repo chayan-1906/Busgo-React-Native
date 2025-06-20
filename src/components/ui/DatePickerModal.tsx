@@ -1,50 +1,33 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {Modal, Platform, Text, TouchableOpacity, View} from 'react-native';
 import {DatePickerModalProps} from '@/types/props.ts';
 import DateTimePicker, {DateTimePickerEvent} from '@react-native-community/datetimepicker';
 
 function DatePickerModal({isVisible, onClose, onConfirm, selectedDate}: DatePickerModalProps) {
     const [tempDate, setTempDate] = useState(selectedDate);
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const twoMonthsAfter = new Date(today);
+    twoMonthsAfter.setMonth(twoMonthsAfter.getMonth() + 2);
 
-    const onChange = (event: DateTimePickerEvent, selectedDate: Date | undefined) => {
-        if (selectedDate) {
-            onConfirm(selectedDate);
+    const onChangeAndroid = (event: DateTimePickerEvent, date: Date | undefined) => {
+        if (event.type === 'set' && date) {
+            setTempDate(date);
+            onConfirm(date);
             onClose();
         }
-    }
-
-    useEffect(() => {
-        // Alert.alert('tempDate changed', tempDate.toDateString());
-    }, [tempDate]);
+    };
 
     if (Platform.OS === 'android') {
-        /*DateTimePickerAndroid.open({
-            value: tempDate,
-            onChange,
-            mode: 'date',
-            is24Hour: true,
-        });
-        return <View/>;*/
-        return (
-            <DateTimePicker
-                value={tempDate}
-                mode={'date'}
-                display={'compact'}
-                onChange={onChange}
-            />
-        );
+        return <DateTimePicker value={tempDate} mode={'date'} display={'compact'} onChange={onChangeAndroid} />;
     }
 
     return (
         <Modal transparent={true} visible={isVisible} animationType={'slide'}>
             <View className={'flex-1 justify-center'} style={{backgroundColor: 'rgba(0,0,0,0.5)'}}>
-                <View className={'bg-white p-4 rounded-3xl mx-2'}>
-                    {Platform.OS === 'ios' && (
-                        <View className={'h-96'}>
-                            <DateTimePicker value={tempDate} mode={'date'} display={'inline'} onChange={(event: DateTimePickerEvent, date: Date | undefined) => date && setTempDate(date)} style={{flex: 1}}/>
-                        </View>
-                    )}
-                    <Text>{tempDate?.toDateString()}</Text>
+                <View className={'bg-white p-4 rounded-3xl mx-2 items-center'}>
+                    {Platform.OS === 'ios' && <DateTimePicker value={tempDate} mode={'date'} display={'spinner'} minimumDate={tomorrow} maximumDate={twoMonthsAfter} onChange={(event: DateTimePickerEvent, date: Date | undefined) => event.type === 'set' && date && setTempDate(date)} />}
                     <View className={'flex-row justify-between mt-4'}>
                         <TouchableOpacity className={'flex-1 mx-2 p-3 bg-gray-300 rounded-lg'} onPress={onClose}>
                             <Text className={'text-center text-black font-bold'}>Cancel</Text>
