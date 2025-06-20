@@ -12,7 +12,7 @@
     "generate-apk": "cd android && ./gradlew assembleRelease"
   },
   "dependencies": {
-    "@react-native-community/datetimepicker": "^8.4.1",
+    "@react-native-community/datetimepicker": "^8.3.0",
     "@react-native-google-signin/google-signin": "^14.0.1",
     "@react-native/new-app-screen": "0.80.0",
     "@react-navigation/native": "^7.1.11",

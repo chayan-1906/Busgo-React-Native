@@ -4,6 +4,7 @@ import {navigate} from '@/utils/NavigationUtils.ts';
 import {screens} from '@/utils/constants.ts';
 import LinearGradient from 'react-native-linear-gradient';
 import {CalendarDaysIcon, MagnifyingGlassIcon} from 'react-native-heroicons/solid';
+import DateTimePicker, {DateTimePickerEvent} from '@react-native-community/datetimepicker';
 
 function Search() {
     const [from, setFrom] = useState<string | null>(null);
@@ -92,13 +93,15 @@ function Search() {
                     </View>
 
                     <TouchableOpacity className={'flex-row items-center justify-center gap-2 my-2 p-3 bg-tertiary rounded-xl'} onPress={handleSearchBuses}>
-                        <MagnifyingGlassIcon color={'#FFF'} size={22}/>
+                        <MagnifyingGlassIcon color={'#FFF'} size={22} />
                         <Text className={'font-okra font-bold text-white text-lg'}>Search Buses</Text>
                     </TouchableOpacity>
 
-                    <Image source={require('../../assets/images/sidebus.jpg')} className={'h-40 w-full my-4 rounded-lg'}/>
+                    <Image source={require('../../assets/images/sidebus.jpg')} className={'h-40 w-full my-4 rounded-lg'} />
                 </View>
             </LinearGradient>
+
+            {/*{showDatePicker && <DatePickerModal isVisible={showDatePicker} onClose={() => setShowDatePicker(false)} onConfirm={setDate}  selectedDate={date} />}*/}
         </View>
     );
 }
