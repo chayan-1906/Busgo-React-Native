@@ -5,6 +5,7 @@ import LoginScreen from '@/screens/LoginScreen';
 import SplashScreen from '@/screens/SplashScreen';
 import {navigationRef} from '@/utils/NavigationUtils';
 import HomeScreen from '@/screens/HomeScreen';
+import BusListScreen from '@/screens/BusListScreen.tsx';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ function Navigation() {
                 <Stack.Screen name={screens.splashScreen} component={SplashScreen} />
                 <Stack.Screen name={screens.loginScreen} component={LoginScreen} />
                 <Stack.Screen name={screens.homeScreen} component={HomeScreen} />
+                <Stack.Screen name={screens.busListScreen} component={BusListScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );

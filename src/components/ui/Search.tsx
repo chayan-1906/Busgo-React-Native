@@ -4,7 +4,9 @@ import {navigate} from '@/utils/NavigationUtils.ts';
 import {screens} from '@/utils/constants.ts';
 import LinearGradient from 'react-native-linear-gradient';
 import {CalendarDaysIcon, MagnifyingGlassIcon} from 'react-native-heroicons/solid';
-import DatePickerModal from '@/components/ui/DatePickerModal.tsx';
+import DatePickerModal from '@/components/ui/modals/DatePickerModal.tsx';
+import LocationPickerModal from '@/components/ui/modals/LocationPickerModal.tsx';
+import {IBus} from '@/types';
 
 function Search() {
     const [from, setFrom] = useState<string | null>(null);
@@ -17,7 +19,7 @@ function Search() {
     const maxDate = new Date();
     maxDate.setMonth(maxDate.getMonth() + 2); // booking for next 2 months
 
-    const handleLocationSet = (location: string, type: 'from' | 'to') => {
+    const handleLocationSelect = (location: string, type: 'from' | 'to') => {
         if (type === 'from') {
             setFrom(location);
             if (location === to) {
@@ -33,7 +35,7 @@ function Search() {
             Alert.alert('Missing Information', 'Please select both departure and destination locations');
             return;
         }
-        if (!from === !to) {
+        if (from === to) {
             Alert.alert('Invalid Selection', "Departure and destination locations can't be the same");
             return;
         }
@@ -45,7 +47,7 @@ function Search() {
             return;
         }
 
-        await navigate(screens.busListScreen, {bus: {from, to, date}});
+        await navigate(screens.busListScreen, {bus: {from, to, date} as Partial<IBus>});
     };
 
     return (
@@ -102,6 +104,7 @@ function Search() {
             </LinearGradient>
 
             {showDatePicker && <DatePickerModal isVisible={showDatePicker} onClose={() => setShowDatePicker(false)} onConfirm={setDate} selectedDate={date} />}
+            {showLocationPicker && <LocationPickerModal isVisible={showLocationPicker} onClose={() => setShowLocationPicker(false)} onSelect={handleLocationSelect} type={locationType} fromLocation={from || undefined}/>}
         </View>
     );
 }

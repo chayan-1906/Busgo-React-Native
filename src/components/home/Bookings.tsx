@@ -1,12 +1,12 @@
+import {useCallback, useState} from 'react';
 import {ActivityIndicator, FlatList, RefreshControl, Text, TouchableOpacity, View} from 'react-native';
-import {useCallback, useEffect, useState} from 'react';
+import {IPopulatedTicket} from '@/types';
 import {tabs} from '@/utils/dummyData.ts';
 import Search from '@/components/ui/Search.tsx';
 import {useQuery} from '@tanstack/react-query';
 import {getTicketsForUser} from '@/service/requests/bus.ts';
 import {useFocusEffect} from '@react-navigation/native';
 import BookItem from '@/components/home/BookItem.tsx';
-import {ITicket} from '@/types';
 
 function Bookings() {
     const [selectedTab, setSelectedTab] = useState<(typeof tabs)[number]>('All');
@@ -36,17 +36,13 @@ function Bookings() {
         }, [refetch]),
     );
 
-    const filteredBookings = selectedTab === 'All' ? tickets : tickets?.filter((ticket: ITicket) => ticket.status === selectedTab);
-
-    useEffect(() => {
-        console.log('booking fetched');
-    }, []);
+    const filteredBookings = selectedTab === 'All' ? tickets : tickets?.filter(ticket => ticket.status === selectedTab);
 
     if (isLoading) {
         return (
             <View className={'flex-1 items-center justify-center bg-white'}>
                 <ActivityIndicator size={'large'} color={'teal'} />
-                <Text className={'text-gray-500 mt-2'}>Fetching bookings...</Text>
+                <Text className={'text-gray-500 mt-2'}>Loading bookings...</Text>
             </View>
         );
     }
@@ -54,8 +50,8 @@ function Bookings() {
     if (isError) {
         return (
             <View className={'flex-1 items-center justify-center bg-white'}>
-                <Text>Failed to fetch bookings.</Text>
-                <TouchableOpacity className={'mt-4 px-4 py-2 bg-blue-500 rounded'}>
+                <Text className={'text-red-500 font-okra font-bold'}>Failed to fetch bookings</Text>
+                <TouchableOpacity className={'mt-4 px-4 py-2 bg-teal-500 rounded'} onPress={onRefresh}>
                     <Text className={'text-white font-semibold'}>Retry</Text>
                 </TouchableOpacity>
             </View>
@@ -66,7 +62,7 @@ function Bookings() {
         <View className={'flex-1 p-2 bg-white'}>
             <FlatList
                 data={filteredBookings}
-                renderItem={({item}) => <BookItem bookItem={item} />}
+                renderItem={({item}: {item: IPopulatedTicket}) => <BookItem bookItem={item} />}
                 showsVerticalScrollIndicator={false}
                 keyExtractor={item => item.ticketExternalId}
                 nestedScrollEnabled={true}

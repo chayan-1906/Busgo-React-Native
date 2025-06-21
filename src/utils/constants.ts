@@ -12,6 +12,7 @@ export const screens = {
     loginScreen: 'LoginScreen',
     homeScreen: 'HomeScreen',
     busListScreen: 'BusListScreen',
+    seatSelectionScreen: 'SeatSelectionScreen',
 }
 
 export const storage = {

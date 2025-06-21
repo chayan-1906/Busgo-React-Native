@@ -1,6 +1,6 @@
 import apiClient from '@/service/apiClient.ts';
 import {apis} from '@/utils/apis.ts';
-import {ITicket} from '@/types';
+import {IPopulatedTicket, ITicket} from '@/types';
 
 export const searchBuses = async (from: string, to: string, date: string) => {
     const {data} = await apiClient.get(apis.searchBusesApi(from, to, date));
@@ -14,7 +14,7 @@ export const getBusDetails = async (busExternalId: string) => {
 
 export const getTicketsForUser = async () => {
     const {data} = await apiClient.get(apis.getTicketsForUserApi);
-    return data?.tickets as ITicket[];
+    return data?.tickets as IPopulatedTicket[];
 };
 
 export const bookTicket = async (busExternalId: string, date: string, seatNumbers: number[]) => {
