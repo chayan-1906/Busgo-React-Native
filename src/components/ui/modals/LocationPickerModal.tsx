@@ -28,7 +28,7 @@ function LocationPickerModal({isVisible, onClose, onSelect, type, fromLocation}:
     return (
         <Modal transparent={false} visible={isVisible} animationType={'slide'}>
             <SafeAreaView />
-            <View className={'flex-1 bg-white p-4'}>
+            <View className={'flex-1 bg-white px-4'}>
                 <Text className={'mb-4 text-lg font-okra font-bold text-center'}>Select {type === 'from' ? 'Departure' : 'Destination'} city</Text>
                 <TextInput value={search} placeholder={'Search city...'} onChangeText={setSearch} className={'p-3 border border-gray-400 rounded-md mb-4 font-okra'} />
                 <FlatList data={filteredLocations} renderItem={renderItem} keyExtractor={item => item} />

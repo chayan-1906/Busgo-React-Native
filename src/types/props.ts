@@ -1,4 +1,4 @@
-import {IPopulatedTicket} from '@/types/index.ts';
+import {IPopulatedTicket, ISeat} from '@/types/index.ts';
 
 export interface BookingItemProps {
     bookItem: IPopulatedTicket;
@@ -22,5 +22,18 @@ export interface LocationPickerModalProps {
 export interface TicketModalProps {
     isVisible: boolean;
     onClose: () => void;
-    bookingInfo: IPopulatedTicket;
+    bookingInfo: Partial<IPopulatedTicket>;
+}
+
+export interface PaymentButtonProps {
+    noOfSeats: number;
+    price: number;
+    onPay: () => void;
+}
+
+export interface SeatProps {
+    seats: ISeat[][];
+    // seats: [ISeat[]];
+    onSeatSelect: (seatId: number) => void;
+    selectedSeats: number[];
 }

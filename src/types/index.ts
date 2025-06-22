@@ -2,7 +2,7 @@ export interface IDecodedToken {
     exp: number;
 }
 
-interface ISeat {
+export interface ISeat {
     seatId: number;
     seatType: 'window' | 'side' | 'path';
     isBooked: boolean;

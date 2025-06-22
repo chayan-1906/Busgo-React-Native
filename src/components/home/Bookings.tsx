@@ -1,5 +1,5 @@
 import {useCallback, useState} from 'react';
-import {ActivityIndicator, FlatList, RefreshControl, Text, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, FlatList, RefreshControl, SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
 import {IPopulatedTicket} from '@/types';
 import {tabs} from '@/utils/dummyData.ts';
 import Search from '@/components/ui/Search.tsx';
@@ -50,7 +50,7 @@ function Bookings() {
     if (isError) {
         return (
             <View className={'flex-1 items-center justify-center bg-white'}>
-                <Text className={'text-red-500 font-okra font-bold'}>Failed to fetch bookings</Text>
+                <Text className={'text-red-500 font-okra font-bold'}>Failed to load bookings</Text>
                 <TouchableOpacity className={'mt-4 px-4 py-2 bg-teal-500 rounded'} onPress={onRefresh}>
                     <Text className={'text-white font-semibold'}>Retry</Text>
                 </TouchableOpacity>
@@ -59,7 +59,7 @@ function Bookings() {
     }
 
     return (
-        <View className={'flex-1 p-2 bg-white'}>
+        <View className={'flex-1 px-4 bg-white'}>
             <FlatList
                 data={filteredBookings}
                 renderItem={({item}: {item: IPopulatedTicket}) => <BookItem bookItem={item} />}
@@ -75,7 +75,7 @@ function Bookings() {
                             {tabs.map((tab: string) => {
                                 return (
                                     <TouchableOpacity key={tab} className={`px-4 py-2 mx-1 rounded-lg ${selectedTab === tab ? 'bg-red-500' : 'bg-gray-300'}`} onPress={() => setSelectedTab(tab)}>
-                                        <Text className={`text-sm font-bold ${selectedTab === tab ? 'text-white' : 'text-black'}`}>{tab}</Text>
+                                        <Text className={`text-sm font-okra font-semibold ${selectedTab === tab ? 'text-white' : 'text-black'}`}>{tab}</Text>
                                     </TouchableOpacity>
                                 );
                             })}
@@ -84,10 +84,11 @@ function Bookings() {
                 }
                 ListEmptyComponent={
                     <View className={'items-center mt-6'}>
-                        <Text className={'text-gray-500'}>No bookings found</Text>
+                        <Text className={'text-gray-500 font-okra'}>No bookings found</Text>
                     </View>
                 }
             />
+            <SafeAreaView/>
         </View>
     );
 }

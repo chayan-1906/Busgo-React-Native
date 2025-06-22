@@ -53,8 +53,8 @@ function Search() {
     return (
         <View className={'rounded-b-3xl overflow-hidden'}>
             <LinearGradient colors={['#78B0E6', '#FFF']} start={{x: 1, y: 1}} end={{x: 1, y: 0}}>
-                <View className={'p-4'}>
-                    <View className={'my-4 border z-20 bg-white rounded-md border-gray-600'}>
+                <View className={''}>
+                    <View className={'mb-4 border z-20 bg-white rounded-md border-gray-600'}>
                         {/** from */}
                         <TouchableOpacity className={'flex-row p-4 gap-4 items-center'} onPress={() => (setLocationType('from'), setShowLocationPicker(true))}>
                             <Image source={require('../../assets/images/bus.png')} className={'size-6'} />

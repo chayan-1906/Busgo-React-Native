@@ -75,18 +75,31 @@ function BusListScreen() {
             )}
 
             {error && (
-                <View className={'flex-1 justify-center items-center'}>
+                <View className={'flex-1 justify-center items-center '}>
                     <Text className={'text-red-500 font-okra font-bold'}>Failed to load buses</Text>
                 </View>
             )}
 
-            {!isLoading && !error && buses?.length === 0 && (
-                <View className={'flex-1 justify-center items-center'}>
+            {/*{!isLoading && !error && buses?.length === 0 && (
+                <View className={'flex-1 justify-center items-center bg-teal-100'}>
                     <Text className={'text-gray-500 font-okra font-bold'}>No buses found</Text>
                 </View>
-            )}
+            )}*/}
 
-            <FlatList data={buses} renderItem={renderItem} showsVerticalScrollIndicator={false} keyExtractor={item => item.busExternalId} contentContainerStyle={{padding: 16}} />
+            {!isLoading && !error && (
+                <FlatList
+                    data={buses}
+                    renderItem={renderItem}
+                    showsVerticalScrollIndicator={false}
+                    keyExtractor={item => item.busExternalId}
+                    contentContainerStyle={{padding: 16, flexGrow: 1}}
+                    ListEmptyComponent={
+                        <View className={'flex-1 justify-center items-center'}>
+                            <Text className={'text-gray-500 font-okra font-bold'}>No buses found</Text>
+                        </View>
+                    }
+                />
+            )}
         </View>
     );
 }
