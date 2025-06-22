@@ -9,7 +9,7 @@ function HomeScreen() {
             <SafeAreaView />
 
             <View className={'flex-row justify-between items-center px-4 py-2'}>
-                <Text className={'font-okra font-semibold text-3xl'}>Bus Tickets</Text>
+                <Text className={'font-okra-semibold text-3xl'}>Bus Tickets</Text>
                 <UserCircleIcon color={'red'} size={38} onPress={logout} />
             </View>
             <Bookings />

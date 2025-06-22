@@ -39,14 +39,14 @@ function LoginScreen() {
         <View className={'gap-4'}>
             <Image source={require('../assets/images/cover.jpeg')} className={'w-full h-64 bg-cover'} />
             <View className={'p-4'}>
-                <Text className={'font-okra font-semibold text-xl text-center'}>Create Account or Sign In</Text>
+                <Text className={'font-okra-semibold text-xl text-center'}>Create Account or Sign In</Text>
                 <View className={'flex-row items-center my-4 mt-12 px-2 border border-black gap-2 rounded-md'}>
-                    <Text className={'font-okra w-[10%] font-bold text-base'}>+91</Text>
+                    <Text className={'w-[10%] font-okra-bold text-base'}>+91</Text>
                     <TextInput value={phone} onChangeText={setPhone} maxLength={10} keyboardType={'number-pad'} placeholder={'Enter 10 digit phone number'} className={'font-okra h-11 w-[90%]'} />
                 </View>
 
                 <TouchableOpacity className={'bg-tertiary rounded-md justify-center items-center p-3'} onPress={handleGoogleSignIn}>
-                    <Text className={'uppercase text-white font-okra font-semibold'}>Let's Go</Text>
+                    <Text className={'uppercase text-white font-okra-semibold'}>Let's Go</Text>
                 </TouchableOpacity>
 
                 <Text className={'my-8 text-sm text-center font-okra text-gray-700'}>------------ OR ------------</Text>
@@ -60,7 +60,7 @@ function LoginScreen() {
                     </TouchableOpacity>
                 </View>
 
-                <Text className={'text-center font-okra text-sm text-gray-500 font-medium my-2 w-72 self-center'}>By signing up you agree to our Terms and Conditions and Privacy Policy</Text>
+                <Text className={'text-center font-okra-medium text-sm text-gray-500 my-2 w-72 self-center'}>By signing up you agree to our Terms and Conditions and Privacy Policy</Text>
             </View>
         </View>
     );

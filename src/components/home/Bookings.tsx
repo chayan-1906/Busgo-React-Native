@@ -1,12 +1,12 @@
 import {useCallback, useState} from 'react';
 import {ActivityIndicator, FlatList, RefreshControl, SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
 import {IPopulatedTicket} from '@/types';
-import {tabs} from '@/utils/dummyData.ts';
 import Search from '@/components/ui/Search.tsx';
 import {useQuery} from '@tanstack/react-query';
 import {getTicketsForUser} from '@/service/requests/bus.ts';
 import {useFocusEffect} from '@react-navigation/native';
 import BookItem from '@/components/home/BookItem.tsx';
+import {tabs} from "@/utils/constants.ts";
 
 function Bookings() {
     const [selectedTab, setSelectedTab] = useState<(typeof tabs)[number]>('All');
@@ -42,7 +42,7 @@ function Bookings() {
         return (
             <View className={'flex-1 items-center justify-center bg-white'}>
                 <ActivityIndicator size={'large'} color={'teal'} />
-                <Text className={'text-gray-500 mt-2'}>Loading bookings...</Text>
+                <Text className={'mt-2 text-gray-500 font-okra-bold'}>Loading bookings...</Text>
             </View>
         );
     }
@@ -50,9 +50,9 @@ function Bookings() {
     if (isError) {
         return (
             <View className={'flex-1 items-center justify-center bg-white'}>
-                <Text className={'text-red-500 font-okra font-bold'}>Failed to load bookings</Text>
+                <Text className={'text-red-500 font-okra-bold'}>Failed to load bookings</Text>
                 <TouchableOpacity className={'mt-4 px-4 py-2 bg-teal-500 rounded'} onPress={onRefresh}>
-                    <Text className={'text-white font-semibold'}>Retry</Text>
+                    <Text className={'text-white font-okra-semibold'}>Retry</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -70,12 +70,12 @@ function Bookings() {
                 ListHeaderComponent={
                     <>
                         <Search />
-                        <Text className={'text-2xl font-okra font-bold my-4'}>Past Booking</Text>
+                        <Text className={'my-4 text-2xl font-okra-bold'}>Past Booking</Text>
                         <View className={'flex-row mb-4'}>
                             {tabs.map((tab: string) => {
                                 return (
                                     <TouchableOpacity key={tab} className={`px-4 py-2 mx-1 rounded-lg ${selectedTab === tab ? 'bg-red-500' : 'bg-gray-300'}`} onPress={() => setSelectedTab(tab)}>
-                                        <Text className={`text-sm font-okra font-semibold ${selectedTab === tab ? 'text-white' : 'text-black'}`}>{tab}</Text>
+                                        <Text className={`text-sm font-okra-semibold ${selectedTab === tab ? 'text-white' : 'text-black'}`}>{tab}</Text>
                                     </TouchableOpacity>
                                 );
                             })}
@@ -84,7 +84,7 @@ function Bookings() {
                 }
                 ListEmptyComponent={
                     <View className={'items-center mt-6'}>
-                        <Text className={'text-gray-500 font-okra'}>No bookings found</Text>
+                        <Text className={'text-gray-500 font-okra-bold'}>No bookings found</Text>
                     </View>
                 }
             />

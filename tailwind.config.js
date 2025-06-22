@@ -5,7 +5,11 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                okra: ['Okra-Regular', 'Okra-Medium', 'Okra-ExtraBold', 'Okra-Bold', 'Okra-MediumLight'],
+                okra: 'Okra-Regular',
+                'okra-medium': 'Okra-Medium',
+                'okra-semibold': 'Okra-MediumLight',
+                'okra-bold': 'Okra-Bold',
+                'okra-extra-bold': 'Okra-ExtraBold',
             },
             colors: {
                 primary: '#FC5431',

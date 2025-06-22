@@ -70,7 +70,7 @@ function Search() {
                         <View className={'flex-row items-center justify-between p-2'}>
                             <View className={'flex-row items-center'}>
                                 <TouchableOpacity className={'p-2 mr-2 rounded-lg bg-secondary'} onPress={() => setDate(new Date())}>
-                                    <Text className={'font-okra font-semibold text-sm'}>Today</Text>
+                                    <Text className={'font-okra-semibold text-sm'}>Today</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     className={'p-2 mr-2 rounded-lg bg-secondary'}
@@ -80,14 +80,14 @@ function Search() {
                                         setDate(today);
                                     }}
                                 >
-                                    <Text className={'font-okra font-semibold text-sm'}>Tomorrow</Text>
+                                    <Text className={'font-okra-semibold text-sm'}>Tomorrow</Text>
                                 </TouchableOpacity>
                             </View>
 
                             <TouchableOpacity className={'flex-row items-center'} onPress={() => setShowDatePicker(true)}>
                                 <View className={'mr-3'}>
-                                    <Text className={'text-sm font-okra font-normal text-gray-500'}>Date of Journey</Text>
-                                    <Text className={'text-base font-okra font-bold text-gray-900'}>{date?.toDateString()}</Text>
+                                    <Text className={'text-sm font-okra text-gray-500'}>Date of Journey</Text>
+                                    <Text className={'text-base font-okra-semibold text-gray-900'}>{date?.toDateString()}</Text>
                                 </View>
                                 <CalendarDaysIcon color={'#000'} size={25} />
                             </TouchableOpacity>
@@ -95,8 +95,8 @@ function Search() {
                     </View>
 
                     <TouchableOpacity className={'flex-row items-center justify-center gap-2 my-2 p-3 bg-tertiary rounded-xl'} onPress={handleSearchBuses}>
-                        <MagnifyingGlassIcon color={'#FFF'} size={22} />
-                        <Text className={'font-okra font-bold text-white text-lg'}>Search Buses</Text>
+                        <MagnifyingGlassIcon color={'#FFF'} size={16}/>
+                        <Text className={'font-okra-bold text-white text-lg'}>Search Buses</Text>
                     </TouchableOpacity>
 
                     <Image source={require('../../assets/images/sidebus.jpg')} className={'h-40 w-full my-4 rounded-lg'} />

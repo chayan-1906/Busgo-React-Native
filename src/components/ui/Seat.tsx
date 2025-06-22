@@ -11,7 +11,7 @@ function Seat({seats, onSeatSelect, selectedSeats}: SeatProps) {
     return (
         <View className={'flex-row justify-between mb-4'}>
             <View className={'w-[30%] items-center justify-around p-4 bg-white rounded-2xl'}>
-                <Text className={'mb-4 text-lg font-okra font-bold'}>Seat Type</Text>
+                <Text className={'mb-4 text-lg font-okra-bold'}>Seat Type</Text>
                 <View className={'items-center mb-4'}>
                     <Image source={SelectedIcon} className={'size-12'} />
                     <Text className={'mb-4 text-base font-okra font-medium'}>Selected</Text>
@@ -19,12 +19,12 @@ function Seat({seats, onSeatSelect, selectedSeats}: SeatProps) {
 
                 <View className={'items-center mb-4'}>
                     <Image source={AvailableIcon} className={'size-12'} />
-                    <Text className={'mb-4 text-base font-okra font-medium'}>Available</Text>
+                    <Text className={'mb-4 text-base font-okra-medium'}>Available</Text>
                 </View>
 
                 <View className={'items-center mb-4'}>
                     <Image source={BookedIcon} className={'size-12'} />
-                    <Text className={'mb-4 text-base font-okra font-medium'}>Booked</Text>
+                    <Text className={'mb-4 text-base font-okra-medium'}>Booked</Text>
                 </View>
             </View>
 
