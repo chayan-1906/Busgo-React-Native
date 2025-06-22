@@ -13,7 +13,7 @@ function TicketModal({isVisible, onClose, bookingInfo}: TicketModalProps) {
 
                 {bookingInfo && bookingInfo.bus ? (
                     <View className={'bg-white overflow-hidden rounded-xl w-[90%] p-4 shadow-lg relative'}>
-                        <Text className={'mb-2 text-center text-xl font-okra-semibold'}>Your Ticket</Text>
+                        <Text className={'mb-2 text-center text-xl font-okra-bold'}>Your Ticket</Text>
                         <View className={'absolute left-[-14px] top-[61%] -translate-y-1/2'}>
                             <Svg height={40} width={28}>
                                 <Circle cx={14} cy={20} r={14} fill={'#2A2526'} />
@@ -26,7 +26,7 @@ function TicketModal({isVisible, onClose, bookingInfo}: TicketModalProps) {
                         </View>
 
                         <View className={'p-3 rounded-lg bg-gray-100'}>
-                            <Text className={'text-gray-700 font-okra-semibold'}>
+                            <Text className={'text-gray-700 font-okra-medium'}>
                                 {bookingInfo.bus.from} → {bookingInfo.bus.to}
                             </Text>
                             <Text className={'text-gray-500 text-sm font-okra'}>
@@ -40,12 +40,12 @@ function TicketModal({isVisible, onClose, bookingInfo}: TicketModalProps) {
                         </View>
 
                         <View className={'mt-3'}>
-                            <Text className={'text-gray-700 font-okra-semibold'}>{bookingInfo.bus.company}</Text>
+                            <Text className={'text-gray-700 font-okra-medium'}>{bookingInfo.bus.company}</Text>
                             <Text className={'text-gray-500 text-sm font-okra'}>{bookingInfo.bus.busType}</Text>
                         </View>
 
                         <View className={'mt-3'}>
-                            <Text className={'text-gray-700 font-okra-semibold'}>Seat(s)</Text>
+                            <Text className={'text-gray-700 font-okra-medium'}>Seat(s)</Text>
                             <Text className={'text-gray-500 text-sm font-okra'}>{bookingInfo.seatNumbers?.join(', ')}</Text>
                         </View>
 
@@ -56,21 +56,21 @@ function TicketModal({isVisible, onClose, bookingInfo}: TicketModalProps) {
                         </View>
 
                         <View>
-                            <Text className={'text-gray-700 font-okra-semibold'}>Ticket #: {bookingInfo.ticketExternalId}</Text>
-                            <Text className={'text-gray-700 font-okra-semibold'}>PNR: {bookingInfo.pnr}</Text>
+                            <Text className={'text-gray-700 font-okra-medium'}>Ticket #: {bookingInfo.ticketExternalId}</Text>
+                            <Text className={'text-gray-700 font-okra-medium'}>PNR: {bookingInfo.pnr}</Text>
                             <Text className={'mt-2  text-lg font-okra-bold text-green-600'}>₹{bookingInfo.totalFare}</Text>
                         </View>
 
-                        <TouchableOpacity className={'flex-row gap-2 py-3 px-4 rounded-lg mt-4 justify-center items-center bg-red-500'}>
-                            <ShareIcon color={'white'} size={16}/>
-                            <Text className={'text-white font-okra-semibold'}>Share your ticket</Text>
+                        <TouchableOpacity className={'flex-row gap-2 py-3 px-4 rounded-lg mt-4 justify-center items-center bg-tertiary'}>
+                            <ShareIcon color={'white'} size={16} />
+                            <Text className={'text-white font-okra-medium'}>Share your ticket</Text>
                         </TouchableOpacity>
                     </View>
                 ) : (
                     <View className={'relative bg-white overflow-hidden rounded-xl w-[90%] p-4 shadow-lg'}>
-                        <Text className={'text-red-500 text-center font-okra font-bold'}>Failed to load ticket</Text>
+                        <Text className={'text-red-500 text-center font-okra-bold'}>Failed to load ticket</Text>
                         <TouchableOpacity className={'mt-4 px-4 py-2 self-center bg-teal-500 rounded'} onPress={onClose}>
-                            <Text className={'text-white font-okra font-semibold'}>Close</Text>
+                            <Text className={'text-white font-okra-medium'}>Close</Text>
                         </TouchableOpacity>
                     </View>
                 )}

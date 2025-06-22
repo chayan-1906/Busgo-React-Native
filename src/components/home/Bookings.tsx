@@ -6,7 +6,7 @@ import {useQuery} from '@tanstack/react-query';
 import {getTicketsForUser} from '@/service/requests/bus.ts';
 import {useFocusEffect} from '@react-navigation/native';
 import BookItem from '@/components/home/BookItem.tsx';
-import {tabs} from "@/utils/constants.ts";
+import {tabs} from '@/utils/constants.ts';
 
 function Bookings() {
     const [selectedTab, setSelectedTab] = useState<(typeof tabs)[number]>('All');
@@ -52,7 +52,7 @@ function Bookings() {
             <View className={'flex-1 items-center justify-center bg-white'}>
                 <Text className={'text-red-500 font-okra-bold'}>Failed to load bookings</Text>
                 <TouchableOpacity className={'mt-4 px-4 py-2 bg-teal-500 rounded'} onPress={onRefresh}>
-                    <Text className={'text-white font-okra-semibold'}>Retry</Text>
+                    <Text className={'text-white font-okra-bold'}>Retry</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -74,8 +74,8 @@ function Bookings() {
                         <View className={'flex-row mb-4'}>
                             {tabs.map((tab: string) => {
                                 return (
-                                    <TouchableOpacity key={tab} className={`px-4 py-2 mx-1 rounded-lg ${selectedTab === tab ? 'bg-red-500' : 'bg-gray-300'}`} onPress={() => setSelectedTab(tab)}>
-                                        <Text className={`text-sm font-okra-semibold ${selectedTab === tab ? 'text-white' : 'text-black'}`}>{tab}</Text>
+                                    <TouchableOpacity key={tab} className={`px-4 py-2 mx-1 rounded-lg ${selectedTab === tab ? 'bg-tertiary' : 'bg-gray-300'}`} onPress={() => setSelectedTab(tab)}>
+                                        <Text className={`text-sm font-okra-medium ${selectedTab === tab ? 'text-white' : 'text-black'}`}>{tab}</Text>
                                     </TouchableOpacity>
                                 );
                             })}
@@ -88,7 +88,7 @@ function Bookings() {
                     </View>
                 }
             />
-            <SafeAreaView/>
+            <SafeAreaView />
         </View>
     );
 }

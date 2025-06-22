@@ -30,10 +30,10 @@ function DatePickerModal({isVisible, onClose, onConfirm, selectedDate}: DatePick
                     {Platform.OS === 'ios' && <DateTimePicker value={tempDate} mode={'date'} display={'spinner'} minimumDate={tomorrow} maximumDate={twoMonthsAfter} onChange={(event: DateTimePickerEvent, date: Date | undefined) => event.type === 'set' && date && setTempDate(date)} />}
                     <View className={'flex-row justify-between mt-4'}>
                         <TouchableOpacity className={'flex-1 mx-2 p-3 bg-gray-300 rounded-lg'} onPress={onClose}>
-                            <Text className={'text-center text-black font-okra-semibold'}>Cancel</Text>
+                            <Text className={'text-center text-black font-okra-medium'}>Cancel</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity className={'flex-1 mx-2 p-3 bg-blue-500 rounded-lg'} onPress={() => (onConfirm(tempDate), onClose())}>
-                            <Text className={'text-center text-white font-okra-semibold'}>Confirm</Text>
+                        <TouchableOpacity className={'flex-1 mx-2 p-3 bg-tertiary rounded-lg'} onPress={() => (onConfirm(tempDate), onClose())}>
+                            <Text className={'text-center text-white font-okra-medium'}>Confirm</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

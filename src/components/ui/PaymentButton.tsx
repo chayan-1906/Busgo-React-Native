@@ -6,7 +6,7 @@ function PaymentButton({noOfSeats, price, onPay}: PaymentButtonProps) {
         <View className={'absolute bottom-0 p-4 pb-5 w-full rounded-t-xl shadow-md bg-white'}>
             <View className={'flex-row items-center justify-between'}>
                 <View>
-                    <Text className={'text-xl font-okra-semibold'}>Amount</Text>
+                    <Text className={'text-xl font-okra-bold'}>Amount</Text>
                     <Text className={'text-sm text-gray-700 font-okra-medium'}>Tax Included</Text>
                 </View>
 
@@ -17,7 +17,7 @@ function PaymentButton({noOfSeats, price, onPay}: PaymentButtonProps) {
             </View>
 
             <TouchableOpacity onPress={onPay} className={'my-4 py-3 px-4 bg-tertiary rounded-xl justify-center items-center'}>
-                <Text className={'text-white text-xl font-okra-semibold'}>Pay Now!</Text>
+                <Text className={'text-white text-xl font-okra-bold'}>Pay Now!</Text>
             </TouchableOpacity>
         </View>
     );

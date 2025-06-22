@@ -7,7 +7,6 @@ module.exports = {
             fontFamily: {
                 okra: 'Okra-Regular',
                 'okra-medium': 'Okra-Medium',
-                'okra-semibold': 'Okra-MediumLight',
                 'okra-bold': 'Okra-Bold',
                 'okra-extra-bold': 'Okra-ExtraBold',
             },

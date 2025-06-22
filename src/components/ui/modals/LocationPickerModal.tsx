@@ -27,16 +27,16 @@ function LocationPickerModal({isVisible, onClose, onSelect, type, fromLocation}:
 
     return (
         <Modal transparent={false} visible={isVisible} animationType={'slide'}>
-            <SafeAreaView className={`${Platform.OS === 'android' && 'mt-4'}`}/>
+            <SafeAreaView className={`${Platform.OS === 'android' && 'mt-4'}`} />
             <View className={'flex-1 bg-white px-4'}>
                 <Text className={'mb-4 text-lg font-okra-bold text-center'}>Select {type === 'from' ? 'Departure' : 'Destination'} City</Text>
                 <TextInput value={search} placeholder={'Search city...'} onChangeText={setSearch} className={'p-3 border border-gray-400 rounded-md mb-4 font-okra'} />
                 <FlatList data={filteredLocations} renderItem={renderItem} keyExtractor={item => item} />
                 <TouchableOpacity onPress={onClose} className={'p-3 mt-4 bg-gray-200 rounded-lg'}>
-                    <Text className={'text-center text-black font-okra-semibold'}>Cancel</Text>
+                    <Text className={'text-center text-black font-okra-medium'}>Cancel</Text>
                 </TouchableOpacity>
             </View>
-            <SafeAreaView className={`${Platform.OS === 'android' && 'mb-4'}`}/>
+            <SafeAreaView className={`${Platform.OS === 'android' && 'mb-4'}`} />
         </Modal>
     );
 }
