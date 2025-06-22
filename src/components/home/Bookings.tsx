@@ -50,7 +50,7 @@ function Bookings() {
     if (isError) {
         return (
             <View className={'flex-1 items-center justify-center bg-white'}>
-                <Text className={'text-red-500 font-okra-bold'}>Failed to load bookings</Text>
+                <Text className={'text-tertiary font-okra-bold'}>Failed to load bookings</Text>
                 <TouchableOpacity className={'mt-4 px-4 py-2 bg-teal-500 rounded'} onPress={onRefresh}>
                     <Text className={'text-white font-okra-bold'}>Retry</Text>
                 </TouchableOpacity>
@@ -70,7 +70,7 @@ function Bookings() {
                 ListHeaderComponent={
                     <>
                         <Search />
-                        <Text className={'my-4 text-2xl font-okra-bold'}>Past Booking</Text>
+                        <Text className={'my-4 text-2xl font-okra-bold'}>All Bookings</Text>
                         <View className={'flex-row mb-4'}>
                             {tabs.map((tab: string) => {
                                 return (

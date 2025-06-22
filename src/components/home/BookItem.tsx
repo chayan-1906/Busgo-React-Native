@@ -34,7 +34,6 @@ function BookItem({bookItem}: BookingItemProps) {
                 <Text className={'text-white text-center font-okra-bold'}>See Ticket</Text>
             </TouchableOpacity>
 
-            {/*{isTicketVisible && <TicketModal isVisible={isTicketVisible} onClose={() => setIsTicketVisible(false)} bookingInfo={bookItem} />}*/}
             <TicketModal isVisible={isTicketVisible} onClose={() => setIsTicketVisible(false)} bookingInfo={bookItem} />
         </View>
     );

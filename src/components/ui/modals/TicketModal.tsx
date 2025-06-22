@@ -68,7 +68,7 @@ function TicketModal({isVisible, onClose, bookingInfo}: TicketModalProps) {
                     </View>
                 ) : (
                     <View className={'relative bg-white overflow-hidden rounded-xl w-[90%] p-4 shadow-lg'}>
-                        <Text className={'text-red-500 text-center font-okra-bold'}>Failed to load ticket</Text>
+                        <Text className={'text-tertiary text-center font-okra-bold'}>Failed to load ticket</Text>
                         <TouchableOpacity className={'mt-4 px-4 py-2 self-center bg-teal-500 rounded'} onPress={onClose}>
                             <Text className={'text-white font-okra-medium'}>Close</Text>
                         </TouchableOpacity>
