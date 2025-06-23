@@ -32,6 +32,7 @@ function SplashScreen() {
             }
 
             await resetAndNavigate(screens.homeScreen);
+            // await navigate(screens.busListScreen, {bus: {from: 'Chennai', to: 'Goa', date: new Date()} as Partial<IBus>});
             return;
         }
         await resetAndNavigate(screens.loginScreen);

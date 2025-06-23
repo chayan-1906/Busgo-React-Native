@@ -13,23 +13,31 @@ function TicketModal({isVisible, onClose, bookingInfo}: TicketModalProps) {
 
                 {bookingInfo && bookingInfo.bus ? (
                     <View className={'bg-white overflow-hidden rounded-xl w-[90%] p-4 shadow-lg relative'}>
-                        <Text className={'mb-2 text-center text-xl font-okra-bold'}>Your Ticket</Text>
-                        <View className={'absolute left-[-14px] top-[61%] -translate-y-1/2'}>
+                        <Text className={'text-center text-2xl font-okra-bold'}>Your Ticket</Text>
+
+                        {/** Divider */}
+                        <View className={'my-4 w-full'}>
+                            <Svg height={2} width={'100%'}>
+                                <Line x1={0} y1={0} x2={'100%'} y2={1} stroke={'gray'} strokeWidth={2} strokeDasharray={'6,6'} />
+                            </Svg>
+                        </View>
+
+                        <View className={'absolute left-[-14px] top-[57%] -translate-y-1/2'}>
                             <Svg height={40} width={28}>
                                 <Circle cx={14} cy={20} r={14} fill={'#2A2526'} />
                             </Svg>
                         </View>
-                        <View className={'absolute right-[-14px] top-[61%] -translate-y-1/2'}>
+                        <View className={'absolute right-[-14px] top-[57%] -translate-y-1/2'}>
                             <Svg height={40} width={28}>
                                 <Circle cx={14} cy={20} r={14} fill={'#2A2526'} />
                             </Svg>
                         </View>
 
-                        <View className={'p-3 rounded-lg bg-gray-100'}>
-                            <Text className={'text-gray-700 font-okra-medium'}>
-                                {bookingInfo.bus.from} → {bookingInfo.bus.to}
+                        <View className={'p-3 rounded-lg bg-gray-200 border-l-4 border-tertiary'} style={{shadowOffset: {width: 2, height: 2}, shadowOpacity: 0.4, shadowRadius: 5, elevation: 6}}>
+                            <Text className={'text-lg font-okra-bold text-gray-900'}>
+                                {bookingInfo.bus?.from} → {bookingInfo.bus?.to}
                             </Text>
-                            <Text className={'text-gray-500 text-sm font-okra'}>
+                            <Text className={'text-gray-800 text-sm font-okra'}>
                                 {new Date(bookingInfo.bus.departureTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})} -{' '}
                                 {new Date(bookingInfo.bus.arrivalTime).toLocaleTimeString([], {
                                     hour: '2-digit',
@@ -39,26 +47,35 @@ function TicketModal({isVisible, onClose, bookingInfo}: TicketModalProps) {
                             </Text>
                         </View>
 
-                        <View className={'mt-3'}>
-                            <Text className={'text-gray-700 font-okra-medium'}>{bookingInfo.bus.company}</Text>
-                            <Text className={'text-gray-500 text-sm font-okra'}>{bookingInfo.bus.busTags.join(', ')}</Text>
+                        <View className={'flex-row mt-6 gap-4'}>
+                            {/** about bus */}
+                            <View className={'p-3 rounded-lg bg-gray-200 border-l-4 border-tertiary flex-1'} style={{shadowOffset: {width: 2, height: 2}, shadowOpacity: 0.4, shadowRadius: 5, elevation: 6}}>
+                                <Text className={'text-gray-700 font-okra-medium'}>{bookingInfo.bus.company}</Text>
+                                <Text className={'text-gray-500 text-sm font-okra'}>{bookingInfo.bus.busTags.join(', ')}</Text>
+                            </View>
+
+                            {/** Seat Numbers */}
+                            <View className={'p-3 rounded-lg bg-gray-200 border-l-4 border-tertiary flex-1'} style={{shadowOffset: {width: 2, height: 2}, shadowOpacity: 0.4, shadowRadius: 5, elevation: 6}}>
+                                <Text className={'text-gray-700 font-okra-medium'}>Seat(s)</Text>
+                                <Text className={'text-gray-500 text-sm font-okra'}>{bookingInfo.seatNumbers?.join(', ')}</Text>
+                            </View>
                         </View>
 
-                        <View className={'mt-3'}>
-                            <Text className={'text-gray-700 font-okra-medium'}>Seat(s)</Text>
-                            <Text className={'text-gray-500 text-sm font-okra'}>{bookingInfo.seatNumbers?.join(', ')}</Text>
-                        </View>
-
-                        <View className={'my-6 w-full'}>
+                        {/** Divider */}
+                        <View className={'mt-7 w-full'}>
                             <Svg height={2} width={'100%'}>
                                 <Line x1={0} y1={0} x2={'100%'} y2={1} stroke={'gray'} strokeWidth={2} strokeDasharray={'6,6'} />
                             </Svg>
                         </View>
 
                         <View>
+                            <Text className={'mt-4 mb-2 uppercase text-xl text-gray-800 font-okra-bold'}>Ticket Details</Text>
                             <Text className={'text-gray-700 font-okra-medium'}>Ticket #: {bookingInfo.ticketExternalId}</Text>
                             <Text className={'text-gray-700 font-okra-medium'}>PNR: {bookingInfo.pnr}</Text>
-                            <Text className={'mt-2  text-lg font-okra-bold text-green-600'}>₹{bookingInfo.totalFare}</Text>
+                            <View className={'flex-row justify-between items-center my-3'}>
+                                <Text className={'text-lg font-okra-bold text-green-600'}>Total Amount</Text>
+                                <Text className={'bg-emerald-100 rounded-full px-3 py-1 text-lg font-okra-bold text-emerald-600'}>₹{bookingInfo.totalFare}</Text>
+                            </View>
                         </View>
 
                         <TouchableOpacity className={'flex-row gap-2 py-3 px-4 rounded-lg mt-4 justify-center items-center bg-tertiary'}>

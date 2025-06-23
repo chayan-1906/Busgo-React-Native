@@ -39,7 +39,7 @@ export const sortByOptions: IFilterOption[] = [
     {label: 'Duration', value: 'duration'},
     {label: 'Rating', value: 'rating'},
     {label: 'Reviews', value: 'reviews'},
-    {label: 'AvailableSeats', value: 'availableSeats'},
+    {label: 'Available Seats', value: 'availableSeats'},
     {label: 'Price', value: 'price'},
     {label: 'Company', value: 'company'},
 ];

@@ -1,21 +1,29 @@
-import {useEffect, useMemo, useState} from 'react';
+import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {ActivityIndicator, FlatList, Platform, RefreshControl, SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import {IBus, IFilterOption} from '@/types';
 import {useQuery} from '@tanstack/react-query';
 import {searchBuses} from '@/service/requests/bus.ts';
-import {ArrowLeftIcon} from 'react-native-heroicons/solid';
+import {AdjustmentsHorizontalIcon, ArrowLeftIcon} from 'react-native-heroicons/solid';
 import {goBack} from '@/utils/NavigationUtils.ts';
-import {busTags} from '@/utils/constants.ts';
+import {busTags, sortByOptions} from '@/utils/constants.ts';
 import Filter from '@/components/ui/Filter.tsx';
 import BusItem from '@/components/home/BusItem.tsx';
+import ActionSheet from 'react-native-actionsheet';
 
 function BusListScreen() {
     const route = useRoute();
     const params = route.params as any;
     const {from, to, date} = params?.bus as Partial<IBus> & {date: Date};
     const [selectedBusTags, setSelectedBusTags] = useState<IFilterOption[]>([]);
-    const [selectedSortBy, setSelectedSortBy] = useState<IFilterOption>();
+    const [selectedSortBy, setSelectedSortBy] = useState<IFilterOption>(sortByOptions[0]);
+    const actionSheetRef = useRef<ActionSheet>(null);
+
+    const getOptions = () => {
+        const displayOptions = sortByOptions.map(option => (option.value === selectedSortBy.value ? `✓ ${option.label}` : option.label));
+
+        return [...displayOptions, 'Cancel'];
+    };
 
     const formattedDate = useMemo(() => date.toISOString().split('T')[0], [date]);
     const {
@@ -29,25 +37,40 @@ function BusListScreen() {
         enabled: !!from && !!to && !!date,
     });
 
+    const handleSelect = useCallback((index: number) => {
+        const cancelIndex = sortByOptions.length;
+        if (index !== cancelIndex) {
+            const selected = sortByOptions[index];
+            setSelectedSortBy(selected);
+        }
+    }, []);
+
     useEffect(() => {
         refetch();
-    }, [refetch, selectedBusTags]);
+    }, [refetch, selectedBusTags, selectedSortBy]);
 
     return (
         <View className={'flex-1 bg-white'}>
             <SafeAreaView />
 
             {/** appbar */}
-            <View className={'flex-row items-center border-b-[1px] border-teal-800 bg-white p-4'}>
-                <TouchableOpacity onPress={goBack}>
-                    <ArrowLeftIcon size={24} color={'#000'} />
-                </TouchableOpacity>
-                <View className={'ml-4'}>
-                    <Text className={'text-lg font-okra-bold'}>
-                        {from} → {to}
-                    </Text>
-                    <Text className={'text-sm text-gray-500 font-okra-medium'}>{date?.toDateString()}</Text>
+            <View className={'flex-row items-center justify-between border-b-[1px] border-teal-800 bg-white p-4'}>
+                <View className={'flex-row items-center'}>
+                    <TouchableOpacity onPress={goBack}>
+                        <ArrowLeftIcon size={24} color={'#000'} />
+                    </TouchableOpacity>
+                    <View className={'ml-4'}>
+                        <Text className={'text-lg font-okra-bold'}>
+                            {from} → {to}
+                        </Text>
+                        <Text className={'text-sm text-gray-500 font-okra-medium'}>{date?.toDateString()}</Text>
+                    </View>
                 </View>
+
+                {/** Sort */}
+                <TouchableOpacity onPress={() => actionSheetRef.current?.show()}>
+                    <AdjustmentsHorizontalIcon size={24} color={'#000'} />
+                </TouchableOpacity>
             </View>
 
             {/** loading state */}
@@ -75,7 +98,7 @@ function BusListScreen() {
                         showsVerticalScrollIndicator={false}
                         keyExtractor={item => item.busExternalId}
                         refreshControl={<RefreshControl refreshing={isLoading} onRefresh={refetch} />}
-                        contentContainerStyle={{paddingHorizontal: 16, flexGrow: 1}}
+                        contentContainerStyle={{paddingHorizontal: 16, flexGrow: 1, gap: 10}}
                         ListEmptyComponent={
                             <View className={'flex-1 justify-center items-center'}>
                                 <Text className={'text-gray-500 font-okra font-bold'}>No buses found</Text>
@@ -85,6 +108,8 @@ function BusListScreen() {
                     <SafeAreaView className={`${Platform.OS === 'android' && 'mb-4'}`} />
                 </>
             )}
+
+            <ActionSheet ref={actionSheetRef} options={getOptions()} cancelButtonIndex={sortByOptions.length} onPress={handleSelect} tintColor={'#CF3239'} />
         </View>
     );
 }
