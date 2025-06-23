@@ -45,7 +45,7 @@ function LocationPickerModal({isVisible, onClose, onSelect, type, fromLocation}:
                         shadowOpacity: 0.2,
                         shadowRadius: 5,
                         elevation: 6,
-                        borderRadius: ,12,
+                        borderRadius: 12,
                         padding: 2,
                         opacity: location === fromLocation ? 0.5 : 1,
                     }}
@@ -76,8 +76,7 @@ function LocationPickerModal({isVisible, onClose, onSelect, type, fromLocation}:
                         <Text className={'text-tertiary font-okra-bold'}>Failed to load cities</Text>
                     </View>
                 ) : (
-                    <FlatList data={cities} renderItem={renderItem} keyExtractor={item => item} keyboardShouldPersistTaps={'handled'} numColumns={2} contentContainerStyle={{columnGap: 6, rowGap: 6}}
-                              showsVerticalScrollIndicator={false} />
+                    <FlatList data={cities} renderItem={renderItem} keyExtractor={item => item} keyboardShouldPersistTaps={'handled'} numColumns={2} contentContainerStyle={{columnGap: 6, rowGap: 6}} showsVerticalScrollIndicator={false} />
                 )}
 
                 <TouchableOpacity onPress={onClose} className={'p-3 mt-4 bg-gray-200 rounded-lg'}>
