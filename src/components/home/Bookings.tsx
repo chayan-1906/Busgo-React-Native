@@ -1,15 +1,16 @@
 import {useCallback, useState} from 'react';
 import {ActivityIndicator, FlatList, RefreshControl, SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
-import {IPopulatedTicket} from '@/types';
+import {IFilterOption, IPopulatedTicket} from '@/types';
 import Search from '@/components/ui/Search.tsx';
 import {useQuery} from '@tanstack/react-query';
 import {getTicketsForUser} from '@/service/requests/bus.ts';
 import {useFocusEffect} from '@react-navigation/native';
 import BookItem from '@/components/home/BookItem.tsx';
 import {tabs} from '@/utils/constants.ts';
+import Filter from '@/components/ui/Filter.tsx';
 
 function Bookings() {
-    const [selectedTab, setSelectedTab] = useState<(typeof tabs)[number]>('All');
+    const [selectedTab, setSelectedTab] = useState<IFilterOption>(tabs[0]);
     const [isRefreshing, setIsRefreshing] = useState(false);
 
     const {
@@ -36,7 +37,7 @@ function Bookings() {
         }, [refetch]),
     );
 
-    const filteredBookings = selectedTab === 'All' ? tickets : tickets?.filter(ticket => ticket.status === selectedTab);
+    const filteredBookings = selectedTab.value === 'All' ? tickets : tickets?.filter(ticket => ticket.status === selectedTab.value);
 
     if (isLoading) {
         return (
@@ -71,15 +72,7 @@ function Bookings() {
                     <>
                         <Search />
                         <Text className={'my-4 text-2xl font-okra-bold'}>All Bookings</Text>
-                        <View className={'flex-row mb-4'}>
-                            {tabs.map((tab: string) => {
-                                return (
-                                    <TouchableOpacity key={tab} className={`px-4 py-2 mx-1 rounded-lg ${selectedTab === tab ? 'bg-tertiary' : 'bg-gray-300'}`} onPress={() => setSelectedTab(tab)}>
-                                        <Text className={`text-sm font-okra-medium ${selectedTab === tab ? 'text-white' : 'text-black'}`}>{tab}</Text>
-                                    </TouchableOpacity>
-                                );
-                            })}
-                        </View>
+                        <Filter options={tabs} selectedOption={selectedTab} setSelectedOption={setSelectedTab} />
                     </>
                 }
                 ListEmptyComponent={

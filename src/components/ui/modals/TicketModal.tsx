@@ -41,7 +41,7 @@ function TicketModal({isVisible, onClose, bookingInfo}: TicketModalProps) {
 
                         <View className={'mt-3'}>
                             <Text className={'text-gray-700 font-okra-medium'}>{bookingInfo.bus.company}</Text>
-                            <Text className={'text-gray-500 text-sm font-okra'}>{bookingInfo.bus.busType}</Text>
+                            <Text className={'text-gray-500 text-sm font-okra'}>{bookingInfo.bus.busTags.join(', ')}</Text>
                         </View>
 
                         <View className={'mt-3'}>

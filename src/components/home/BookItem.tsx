@@ -23,7 +23,7 @@ function BookItem({bookItem}: BookingItemProps) {
 
             <Text className={'text-sm text-gray-600 font-okra'}>{new Date(bookItem.date)?.toDateString()}</Text>
             <Text className={'text-sm text-gray-600 font-okra'}>
-                {bookItem.bus.company} ({bookItem.bus?.busType})
+                {bookItem.bus.company} ({bookItem.bus?.busTags.join(', ')})
             </Text>
             <View className={'flex-row items-center mt-2'}>
                 <UserGroupIcon size={18} color={'gray'} />

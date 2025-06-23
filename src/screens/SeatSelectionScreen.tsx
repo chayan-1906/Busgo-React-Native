@@ -38,7 +38,7 @@ function SeatSelectionScreen() {
         },
         onError: (error: any) => {
             console.log('Error booking ticket ❌', error);
-            Alert.alert('Failed', 'Failed to book ticket, please try again later');
+            Alert.alert('Failed', `Failed to book ticket, please try again later; ${JSON.stringify(error)}`);
         },
     });
 
@@ -115,7 +115,7 @@ function SeatSelectionScreen() {
                         </View>
                     </View>
 
-                    <Text className={'mb-1 text-sm text-gray-600 font-okra'}>{busInfo.busType}</Text>
+                    <Text className={'mb-1 text-sm text-gray-600 font-okra'}>{busInfo.busTags.join(', ')}</Text>
 
                     <View className={'flex-row justify-between items-center mt-2'}>
                         <View className={'items-start'}>
@@ -136,7 +136,7 @@ function SeatSelectionScreen() {
                         <Text className={'text-black text-lg font-okra-bold '}>₹{busInfo.price}</Text>
                     </View>
 
-                    <View className={'flex-row gap-2 mt-3'}>
+                    <View className={'flex-row gap-2 mt-3 flex-wrap'}>
                         {busInfo.badges.map((badge: string, index: number) => {
                             return (
                                 <View key={index} className={'bg-yellow-200 px-3 py-1 rounded-full'}>
@@ -150,7 +150,6 @@ function SeatSelectionScreen() {
 
             <PaymentButton noOfSeats={selectedSeats.length} price={busInfo.price} onPay={handleOnPay} />
 
-            {/*{isTicketVisible && <TicketModal isVisible={isTicketVisible} onClose={() => setIsTicketVisible(false)} bookingInfo={{bus: busInfo}} />}*/}
             <TicketModal
                 isVisible={isTicketVisible}
                 onClose={async () => (await resetAndNavigate(screens.homeScreen), setIsTicketVisible(false))}

@@ -2,6 +2,11 @@ export interface IDecodedToken {
     exp: number;
 }
 
+export interface IFilterOption {
+    label: string;
+    value: string;
+}
+
 export interface ISeat {
     seatId: number;
     seatType: 'window' | 'side' | 'path';
@@ -20,7 +25,7 @@ export interface IBus {
     price: number;
     originalPrice: number;
     company: string;
-    busType: string;
+    busTags: string[];
     rating: number;
     totalReviews: number;
     badges: string[];

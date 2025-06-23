@@ -1,4 +1,4 @@
-import {IPopulatedTicket, ISeat} from '@/types/index.ts';
+import {IFilterOption, IPopulatedTicket, ISeat} from '@/types/index.ts';
 
 export interface BookingItemProps {
     bookItem: IPopulatedTicket;
@@ -37,3 +37,21 @@ export interface SeatProps {
     onSeatSelect: (seatId: number) => void;
     selectedSeats: number[];
 }
+
+interface SingleSelectProps {
+    options: IFilterOption[];
+    selectedOption: IFilterOption;
+    setSelectedOption: (value: IFilterOption) => void;
+    multi?: false;
+    className?: string;
+}
+
+interface MultiSelectProps {
+    options: IFilterOption[];
+    selectedOption: IFilterOption[];
+    setSelectedOption: (value: IFilterOption[]) => void;
+    multi: true;
+    className?: string;
+}
+
+export type FilterProps = SingleSelectProps | MultiSelectProps;
