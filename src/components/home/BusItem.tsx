@@ -4,6 +4,7 @@ import {screens} from '@/utils/constants.ts';
 import {IBus} from '@/types';
 import LinearGradient from 'react-native-linear-gradient';
 import {StarIcon} from 'react-native-heroicons/solid';
+import {generateHrMinFromDuration} from "@/utils/generateHrMinFromDuration.ts";
 
 function BusItem({item: bus}: {item: IBus}) {
     return (
@@ -57,7 +58,7 @@ function BusItem({item: bus}: {item: IBus}) {
                                     <View className={'absolute -top-1 left-0 size-2.5 rounded-full bg-tertiary'} />
                                     <View className={'absolute -top-1 right-0 size-2.5 rounded-full bg-gray-300'} />
                                 </View>
-                                <Text className={'text-sm font-okra-medium text-gray-700 mt-2'}>{bus.duration}</Text>
+                                <Text className={'text-sm font-okra-medium text-gray-700 mt-2'}>{generateHrMinFromDuration(bus.duration)}</Text>
                             </View>
 
                             <View className={'flex-1 items-center'}>

@@ -10,6 +10,7 @@ import TicketModal from '@/components/ui/modals/TicketModal.tsx';
 import {screens} from '@/utils/constants.ts';
 import PaymentButton from '@/components/ui/PaymentButton.tsx';
 import Seat from '@/components/ui/Seat.tsx';
+import {generateHrMinFromDuration} from "@/utils/generateHrMinFromDuration.ts";
 
 function SeatSelectionScreen() {
     const route = useRoute();
@@ -122,7 +123,7 @@ function SeatSelectionScreen() {
                             <Text className={'text-lg font-okra-medium'}>{new Date(busInfo.departureTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</Text>
                             <Text className={'text-sm text-gray-500 font-okra'}>Departure</Text>
                         </View>
-                        <Text className={'text-sm text-gray-500 font-okra-medium'}>{busInfo.duration}</Text>
+                        <Text className={'text-sm text-gray-500 font-okra-medium'}>{generateHrMinFromDuration(busInfo.duration)}</Text>
                         <View className={'items-end'}>
                             <Text className={'text-lg font-okra-medium'}>{new Date(busInfo.arrivalTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</Text>
                             <Text className={'text-sm text-gray-500 font-okra'}>Arrival</Text>

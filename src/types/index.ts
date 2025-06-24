@@ -20,7 +20,7 @@ export interface IBus {
     to: string;
     departureTime: string;
     arrivalTime: string;
-    duration: string;
+    duration: number;
     availableSeats: number;
     price: number;
     originalPrice: number;
