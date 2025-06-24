@@ -10,7 +10,7 @@ import TicketModal from '@/components/ui/modals/TicketModal.tsx';
 import {screens} from '@/utils/constants.ts';
 import PaymentButton from '@/components/ui/PaymentButton.tsx';
 import Seat from '@/components/ui/Seat.tsx';
-import {generateHrMinFromDuration} from "@/utils/generateHrMinFromDuration.ts";
+import {generateHrMinFromDuration} from '@/utils/generateHrMinFromDuration.ts';
 
 function SeatSelectionScreen() {
     const route = useRoute();
@@ -39,7 +39,7 @@ function SeatSelectionScreen() {
         },
         onError: (error: any) => {
             console.log('Error booking ticket ❌', error);
-            Alert.alert('Failed', `Failed to book ticket, please try again later; ${JSON.stringify(error)}`);
+            Alert.alert('Failed', 'Failed to book ticket, please try again later');
         },
     });
 

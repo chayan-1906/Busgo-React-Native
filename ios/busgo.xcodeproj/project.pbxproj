@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C80B921A6F3F58F76C31292 /* libPods-busgo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-busgo.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		18EA40D2E56944588F94680C /* Okra-MediumLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17C90AF6307A425F9A908495 /* Okra-MediumLight.ttf */; };
 		2C00BF943D73F2E6E85770A4 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 		5E5376C68A1F4F16BEF5C21C /* Okra-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62D1D787CA094673B935E0A4 /* Okra-Regular.ttf */; };
 		76130E88D3C2459093A4B65B /* Okra-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5429F2098FA4C548B7A1C8E /* Okra-ExtraBold.ttf */; };
@@ -17,6 +15,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		C7CE645DE817477AA930A012 /* Okra-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E7C6A9F7F27413E9319AB42 /* Okra-Medium.ttf */; };
 		D85AC15EAA3740CA98854CC6 /* Okra-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72E2B9ECC87B4278841B8879 /* Okra-Bold.ttf */; };
+		E2132988EF1454B8EBFA2F52 /* libPods-busgo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F1B1A3A36DC617C828DDEB2 /* libPods-busgo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,13 +23,12 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = busgo/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = busgo/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = busgo/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		17C90AF6307A425F9A908495 /* Okra-MediumLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Okra-MediumLight.ttf"; path = "../src/assets/fonts/Okra-MediumLight.ttf"; sourceTree = "<group>"; };
-		3B4392A12AC88292D35C810B /* Pods-busgo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-busgo.debug.xcconfig"; path = "Target Support Files/Pods-busgo/Pods-busgo.debug.xcconfig"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-busgo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-busgo.release.xcconfig"; path = "Target Support Files/Pods-busgo/Pods-busgo.release.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-busgo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-busgo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		47542BA87753FCF9D5F10D7A /* Pods-busgo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-busgo.release.xcconfig"; path = "Target Support Files/Pods-busgo/Pods-busgo.release.xcconfig"; sourceTree = "<group>"; };
+		49B3663A5C9821E0BE3B2F89 /* Pods-busgo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-busgo.debug.xcconfig"; path = "Target Support Files/Pods-busgo/Pods-busgo.debug.xcconfig"; sourceTree = "<group>"; };
 		62D1D787CA094673B935E0A4 /* Okra-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Okra-Regular.ttf"; path = "../src/assets/fonts/Okra-Regular.ttf"; sourceTree = "<group>"; };
 		72E2B9ECC87B4278841B8879 /* Okra-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Okra-Bold.ttf"; path = "../src/assets/fonts/Okra-Bold.ttf"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = busgo/AppDelegate.swift; sourceTree = "<group>"; };
+		7F1B1A3A36DC617C828DDEB2 /* libPods-busgo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-busgo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = busgo/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E7C6A9F7F27413E9319AB42 /* Okra-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Okra-Medium.ttf"; path = "../src/assets/fonts/Okra-Medium.ttf"; sourceTree = "<group>"; };
 		B5429F2098FA4C548B7A1C8E /* Okra-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Okra-ExtraBold.ttf"; path = "../src/assets/fonts/Okra-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -42,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-busgo.a in Frameworks */,
+				E2132988EF1454B8EBFA2F52 /* libPods-busgo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,7 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-busgo.a */,
+				7F1B1A3A36DC617C828DDEB2 /* libPods-busgo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -76,7 +74,6 @@
 				72E2B9ECC87B4278841B8879 /* Okra-Bold.ttf */,
 				B5429F2098FA4C548B7A1C8E /* Okra-ExtraBold.ttf */,
 				9E7C6A9F7F27413E9319AB42 /* Okra-Medium.ttf */,
-				17C90AF6307A425F9A908495 /* Okra-MediumLight.ttf */,
 				62D1D787CA094673B935E0A4 /* Okra-Regular.ttf */,
 			);
 			name = Resources;
@@ -116,8 +113,8 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-busgo.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-busgo.release.xcconfig */,
+				49B3663A5C9821E0BE3B2F89 /* Pods-busgo.debug.xcconfig */,
+				47542BA87753FCF9D5F10D7A /* Pods-busgo.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -129,13 +126,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "busgo" */;
 			buildPhases = (
-				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				94B8AFED420D019AB058F609 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
-				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				49849F2E2A7AD428BDD43121 /* [CP] Embed Pods Frameworks */,
+				D0FDC1C21FDD3E62B8988BE4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -188,7 +185,6 @@
 				D85AC15EAA3740CA98854CC6 /* Okra-Bold.ttf in Resources */,
 				76130E88D3C2459093A4B65B /* Okra-ExtraBold.ttf in Resources */,
 				C7CE645DE817477AA930A012 /* Okra-Medium.ttf in Resources */,
-				18EA40D2E56944588F94680C /* Okra-MediumLight.ttf in Resources */,
 				5E5376C68A1F4F16BEF5C21C /* Okra-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,7 +208,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
+		49849F2E2A7AD428BDD43121 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -229,7 +225,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-busgo/Pods-busgo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
+		94B8AFED420D019AB058F609 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -251,7 +247,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
+		D0FDC1C21FDD3E62B8988BE4 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -284,7 +280,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-busgo.debug.xcconfig */;
+			baseConfigurationReference = 49B3663A5C9821E0BE3B2F89 /* Pods-busgo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -315,7 +311,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-busgo.release.xcconfig */;
+			baseConfigurationReference = 47542BA87753FCF9D5F10D7A /* Pods-busgo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
