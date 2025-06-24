@@ -60,7 +60,7 @@ function Bookings() {
     }
 
     return (
-        <View className={'flex-1 px-4 bg-white'}>
+        <View className={'flex-1 bg-white'}>
             <FlatList
                 data={filteredBookings}
                 renderItem={({item}: {item: IPopulatedTicket}) => <BookItem bookItem={item} />}
@@ -68,6 +68,7 @@ function Bookings() {
                 keyExtractor={item => item.ticketExternalId}
                 nestedScrollEnabled={true}
                 refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />}
+                contentContainerStyle={{paddingHorizontal: 16}}
                 ListHeaderComponent={
                     <>
                         <Search />

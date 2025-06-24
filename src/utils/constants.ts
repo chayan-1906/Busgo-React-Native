@@ -5,10 +5,10 @@ export const tabs: IFilterOption[] = [
         label: 'All',
         value: 'All',
     },
-    {
+    /*{
         label: 'Upcoming',
         value: 'Upcoming',
-    },
+    },*/
     {
         label: 'Completed',
         value: 'Completed',
@@ -20,8 +20,8 @@ export const tabs: IFilterOption[] = [
 ];
 
 export const busTags: IFilterOption[] = [
-    {label: 'A/C', value: 'AC'},
-    {label: 'Non A/C', value: 'Non-AC'},
+    {label: 'A/C', value: 'A/C'},
+    {label: 'Non A/C', value: 'Non A/C'},
     {label: 'Sleeper', value: 'Sleeper'},
     {label: 'Seater', value: 'Seater'},
     {label: 'Luxury', value: 'Luxury'},
@@ -38,7 +38,7 @@ export const sortByOptions: IFilterOption[] = [
     {label: 'Arrival Time', value: 'arrivalTime'},
     {label: 'Duration', value: 'duration'},
     {label: 'Rating', value: 'rating'},
-    {label: 'Reviews', value: 'reviews'},
+    {label: 'Reviews', value: 'totalReviews'},
     {label: 'Available Seats', value: 'availableSeats'},
     {label: 'Price', value: 'price'},
     {label: 'Company', value: 'company'},

@@ -101,7 +101,7 @@ function BusListScreen() {
                         contentContainerStyle={{paddingHorizontal: 16, flexGrow: 1, gap: 10}}
                         ListEmptyComponent={
                             <View className={'flex-1 justify-center items-center'}>
-                                <Text className={'text-gray-500 font-okra font-bold'}>No buses found</Text>
+                                <Text className={'text-gray-500 font-okra-bold'}>No buses found</Text>
                             </View>
                         }
                     />
