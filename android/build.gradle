@@ -18,4 +18,18 @@ buildscript {
     }
 }
 
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty("android")) {
+            android {
+                lint {
+                    checkReleaseBuilds false
+                    abortOnError false
+                    disable 'UnsafeOptInUsageError'
+                }
+            }
+        }
+    }
+}
+
 apply plugin: "com.facebook.react.rootproject"

@@ -9,18 +9,6 @@ import {navigationRef} from '@/utils/NavigationUtils';
 import BusListScreen from '@/screens/BusListScreen.tsx';
 import SeatSelectionScreen from '@/screens/SeatSelectionScreen.tsx';
 
-// Create a type that represents the screen names
-type ScreenNames = typeof screens;
-
-// Define RootStackParamList using the keys from screens
-export type RootStackParamList = {
-    [K in keyof ScreenNames]: K extends 'seatSelectionScreen'
-        ? { busExternalId: string }
-        : K extends 'busListScreen'
-            ? { from?: string, to?: string, date?: Date }
-            : undefined;
-};
-
 const Stack = createNativeStackNavigator();
 
 function Navigation() {
