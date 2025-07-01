@@ -5,12 +5,14 @@ import {IBus, ITicket} from '@/types';
 import {useMutation, useQuery} from '@tanstack/react-query';
 import {bookTicket, getBusDetails} from '@/service/requests/bus.ts';
 import {goBack, resetAndNavigate} from '@/utils/NavigationUtils.ts';
-import {ArrowLeftIcon, StarIcon} from 'react-native-heroicons/solid';
+import {ArrowLeftIcon, ShareIcon, StarIcon} from 'react-native-heroicons/solid';
 import TicketModal from '@/components/ui/modals/TicketModal.tsx';
 import {screens} from '@/utils/constants.ts';
 import PaymentButton from '@/components/ui/PaymentButton.tsx';
 import Seat from '@/components/ui/Seat.tsx';
 import {generateHrMinFromDuration} from '@/utils/generateHrMinFromDuration.ts';
+import {generateBusDetailsLink} from '@/utils/deeplinks.ts';
+import Share from 'react-native-share';
 
 function SeatSelectionScreen() {
     const route = useRoute();
@@ -59,6 +61,19 @@ function SeatSelectionScreen() {
         bookTicketMutation.mutate({date: new Date(busInfo.departureTime).toISOString(), seatNumbers: selectedSeats});
     };
 
+    const handleShare = async () => {
+        const link = generateBusDetailsLink(busExternalId!);
+        const shareOptions = {
+            title: 'Share Bus Details',
+            // url: Platform.OS === 'android' ? `file://${uri}` : uri,
+            // type: 'image/png',
+            // failOnCancel: false,
+            message: `Check out this bus: ${link}`,
+        };
+
+        await Share.open(shareOptions);
+    };
+
     useFocusEffect(
         useCallback(() => {
             refetch();
@@ -88,18 +103,23 @@ function SeatSelectionScreen() {
     return (
         <View className={'flex-1 bg-white'}>
             <SafeAreaView />
-            <View className={'flex-row items-center border-b-[1px] border-teal-800 bg-white p-4'}>
-                <TouchableOpacity onPress={goBack}>
-                    <ArrowLeftIcon size={24} color={'#000'} />
-                </TouchableOpacity>
-                <View className={'ml-4'}>
-                    <Text className={'text-lg font-okra-bold'}>
-                        {busInfo.from} → {busInfo.to}
-                    </Text>
-                    <Text className={'text-sm text-gray-500 font-okra-medium'}>
-                        {new Date(busInfo.departureTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})} {new Date(busInfo.departureTime).toDateString()}
-                    </Text>
+            <View className={'flex-row items-center justify-between border-b-[1px] border-teal-800 bg-white p-4'}>
+                <View className={'flex-row items-center'}>
+                    <TouchableOpacity onPress={goBack}>
+                        <ArrowLeftIcon size={24} color={'#000'} />
+                    </TouchableOpacity>
+                    <View className={'ml-4'}>
+                        <Text className={'text-lg font-okra-bold'}>
+                            {busInfo.from} → {busInfo.to}
+                        </Text>
+                        <Text className={'text-sm text-gray-500 font-okra-medium'}>
+                            {new Date(busInfo.departureTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})} {new Date(busInfo.departureTime).toDateString()}
+                        </Text>
+                    </View>
                 </View>
+                <TouchableOpacity onPress={handleShare}>
+                    <ShareIcon />
+                </TouchableOpacity>
             </View>
 
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 165}} className={'p-4 bg-teal-100'}>

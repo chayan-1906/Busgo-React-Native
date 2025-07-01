@@ -1,35 +1,16 @@
 import {Text, TouchableOpacity, View} from 'react-native';
-import Share from "react-native-share";
 import {navigate} from '@/utils/NavigationUtils.ts';
 import {screens} from '@/utils/constants.ts';
 import {IBus} from '@/types';
 import LinearGradient from 'react-native-linear-gradient';
 import {StarIcon} from 'react-native-heroicons/solid';
-import {generateHrMinFromDuration} from "@/utils/generateHrMinFromDuration.ts";
-import {generateBusDetailsLink} from "@/utils/deeplinks.ts";
+import {generateHrMinFromDuration} from '@/utils/generateHrMinFromDuration.ts';
 
-function BusItem({item: bus}: { item: IBus }) {
-    const handleShare = async () => {
-        const link = generateBusDetailsLink(bus.busExternalId);
-        const shareOptions = {
-            title: 'Share Bus Details',
-            // url: Platform.OS === 'android' ? `file://${uri}` : uri,
-            // type: 'image/png',
-            // failOnCancel: false,
-            message: `Check out this bus: ${link}`,
-        };
-
-        await Share.open(shareOptions);
-    }
-
+function BusItem({item: bus}: {item: IBus}) {
     return (
         <LinearGradient colors={['#CF3239', '#FDBB8A']} start={{x: 0.0, y: 0.0}} end={{x: 1.0, y: 1.0}} style={{shadowOffset: {width: 0, height: 3}, shadowOpacity: 0.2, shadowRadius: 5, elevation: 6, borderRadius: 12, padding: 2}}>
             <View className={'bg-white/80 m-[1px] rounded-xl'}>
                 <View className={'mb-4 p-4 rounded-lg shadow-sm'}>
-                    <TouchableOpacity onPress={handleShare}>
-                        <Text className={'text-3xl text-red-600 font-okra-bold'}>Share Bus</Text>
-                    </TouchableOpacity>
-
                     {/** Bus Company, Rating, Reviews */}
                     <View className={'flex-row justify-between'}>
                         <View className={'flex-row gap-2 items-center mb-2'}>
@@ -43,7 +24,7 @@ function BusItem({item: bus}: { item: IBus }) {
                                 <Text className={'text-lg text-gray-900 font-okra-bold'}>{bus.company}</Text>
                                 <View className={'flex-row gap-2 items-center'}>
                                     <Text className={'text-sm text-gray-700 font-okra-medium'}>{bus.busTags.join(', ')}</Text>
-                                    <StarIcon color={'#D78A5b'} size={16}/>
+                                    <StarIcon color={'#D78A5b'} size={16} />
                                     <Text className={'text-sm text-gray-700 font-okra-medium'}>
                                         {bus.rating} <Text>({bus.totalReviews})</Text>
                                     </Text>
@@ -73,9 +54,9 @@ function BusItem({item: bus}: { item: IBus }) {
                             <View className={'items-center justify-center flex-1'}>
                                 <Text className={'my-2 uppercase text-xs text-gray-500'}>Duration</Text>
                                 <View className={'relative w-full h-0.5 bg-gray-300'}>
-                                    <View className={'absolute top-0 left-0 right-0 h-0.5 bg-tertiary w-1/2'}/>
-                                    <View className={'absolute -top-1 left-0 size-2.5 rounded-full bg-tertiary'}/>
-                                    <View className={'absolute -top-1 right-0 size-2.5 rounded-full bg-gray-300'}/>
+                                    <View className={'absolute top-0 left-0 right-0 h-0.5 bg-tertiary w-1/2'} />
+                                    <View className={'absolute -top-1 left-0 size-2.5 rounded-full bg-tertiary'} />
+                                    <View className={'absolute -top-1 right-0 size-2.5 rounded-full bg-gray-300'} />
                                 </View>
                                 <Text className={'text-sm font-okra-medium text-gray-700 mt-2'}>{generateHrMinFromDuration(bus.duration)}</Text>
                             </View>

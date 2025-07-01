@@ -31,6 +31,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     return true
   }
+
+  // MARK: URL Scheme Handling
+  func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    if RCTLinkingManager.application(application, open: url, options: options) {
+      return true
+    }
+    return false
+  }
+
+  func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+    if RCTLinkingManager.application(application, continue: userActivity, restorationHandler: restorationHandler) {
+      return true
+    }
+    return false
+  }
 }
 
 class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
