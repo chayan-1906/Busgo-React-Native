@@ -7,12 +7,17 @@
       "@/*": [
         "src/*"
       ]
-    }
+    },
+    "types": [
+      "nativewind/types",
+      "node"
+    ]
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    "expo-env.d.ts",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
+    "src/types/**/*.d.ts"
   ]
 }

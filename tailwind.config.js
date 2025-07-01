@@ -5,7 +5,7 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				okra: 'Okra-Regular',
+				'okra': 'Okra-Regular',
 				'okra-medium': 'Okra-Medium',
 				'okra-bold': 'Okra-Bold',
 				'okra-extra-bold': 'Okra-ExtraBold',

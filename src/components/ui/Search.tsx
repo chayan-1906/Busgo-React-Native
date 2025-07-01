@@ -65,7 +65,7 @@ function Search() {
 
                         {/** to */}
                         <TouchableOpacity className={'flex-row p-4 gap-4 items-center border-t-[1px] border-b-[1px] border-gray-400'} onPress={() => (setLocationType('to'), setShowLocationPicker(true))}>
-                            <Image source={require('../../assets/images/bus.png')} className={'size-6'} />
+                            <Image source={BusImage} className={'size-6'} />
                             <Text className={'w-[90%] text-lg font-okra text-gray-600'}>{to || 'To'}</Text>
                         </TouchableOpacity>
 

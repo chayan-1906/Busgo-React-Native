@@ -6,6 +6,9 @@ import {screens} from '@/utils/constants.ts';
 import {loginWithGoogle} from '@/service/requests/auth.ts';
 import {resetAndNavigate} from '@/utils/NavigationUtils.ts';
 import {IOS_GOOGLE_CLIENT_ID, WEB_GOOGLE_CLIENT_ID} from "@/service/config.ts";
+import AppleImage from '../../assets/images/apple.png';
+import CoverImage from '../../assets/images/cover.jpeg';
+import GoogleImage from '../../assets/images/google.png';
 
 GoogleSignin.configure({
     webClientId: WEB_GOOGLE_CLIENT_ID,
@@ -37,7 +40,7 @@ function LoginScreen() {
 
     return (
         <View className={'gap-4'}>
-            <Image source={require('../assets/images/cover.jpeg')} className={'w-full h-64 bg-cover'}/>
+            <Image source={CoverImage} className={'w-full h-64 bg-cover'}/>
             <View className={'p-4'}>
                 <Text className={'font-okra-medium text-xl text-center'}>Create Account or Sign In</Text>
                 <View className={'flex-row items-center my-4 mt-12 px-2 border border-black gap-2 rounded-md'}>
@@ -46,17 +49,17 @@ function LoginScreen() {
                 </View>
 
                 <TouchableOpacity onPress={handleGoogleSignIn} className={'my-4 py-3 px-4 bg-tertiary rounded-xl justify-center items-center'}>
-                    <Text className={'text-white text-xl font-okra-bold'}>Let's Go</Text>
+                    <Text className={'text-white text-xl font-okra-bold'}>Let&apos;s Go</Text>
                 </TouchableOpacity>
 
                 <Text className={'my-8 text-sm text-center font-okra text-gray-700'}>------------ OR ------------</Text>
 
                 <View className={'flex-row items-center justify-center gap-4'}>
                     <TouchableOpacity className={'border border-gray-300 rounded-md p-2'} onPress={handleGoogleSignIn}>
-                        <Image source={require('../assets/images/google.png')} resizeMode={'contain'} className={'size-5'}/>
+                        <Image source={GoogleImage} resizeMode={'contain'} className={'size-5'}/>
                     </TouchableOpacity>
                     <TouchableOpacity className={'border border-gray-300 rounded-md p-2'}>
-                        <Image source={require('../assets/images/apple.png')} resizeMode={'contain'} className={'size-5'}/>
+                        <Image source={AppleImage} resizeMode={'contain'} className={'size-5'}/>
                     </TouchableOpacity>
                 </View>
 
