@@ -28,7 +28,7 @@ function Navigation() {
 
 	return (
 		<NavigationContainer ref={navigationRef} linking={linking}>
-			<Stack.Navigator {...{} as any} initialRouteName={screens.splashScreen} screenOptions={{headerShown: false}}>
+			<Stack.Navigator initialRouteName={screens.splashScreen} screenOptions={{headerShown: false}}>
 				<Stack.Screen name={screens.splashScreen} component={SplashScreen}/>
 				<Stack.Screen name={screens.loginScreen} component={LoginScreen}/>
 				<Stack.Screen name={screens.homeScreen} component={HomeScreen}/>

@@ -10,11 +10,11 @@ import {IFilterOption, IPopulatedTicket} from '@/types';
 import {getTicketsForUser} from '@/service/requests/bus.ts';
 
 function Bookings() {
-    const [selectedTab, setSelectedTab] = useState<IFilterOption>(tabs[0]);
+    const [selectedTab, setSelectedTab] = useState<IFilterOption>(tabs?.[0] || {label: 'All', value: 'All'});
     const [isRefreshing, setIsRefreshing] = useState(false);
 
     const {
-        data: tickets,
+        data: tickets = [],
         isLoading,
         isError,
         refetch,
@@ -62,7 +62,7 @@ function Bookings() {
     return (
         <View className={'flex-1 bg-white'}>
             <FlatList
-                data={filteredBookings}
+                data={filteredBookings || []}
                 renderItem={({item}: {item: IPopulatedTicket}) => <BookItem bookItem={item} />}
                 showsVerticalScrollIndicator={false}
                 keyExtractor={item => item.ticketExternalId}
@@ -73,7 +73,7 @@ function Bookings() {
                     <>
                         <Search />
                         <Text className={'my-4 text-2xl font-okra-bold'}>All Bookings</Text>
-                        <Filter options={tabs} selectedOption={selectedTab} setSelectedOption={setSelectedTab} />
+                        <Filter options={tabs || []} selectedOption={selectedTab} setSelectedOption={setSelectedTab}/>
                     </>
                 }
                 ListEmptyComponent={
