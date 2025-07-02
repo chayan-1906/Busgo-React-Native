@@ -10,6 +10,8 @@ import AppleImage from '../../assets/images/apple.png';
 import CoverImage from '../../assets/images/cover.jpeg';
 import GoogleImage from '../../assets/images/google.png';
 
+console.log('Google Client IDs:', {WEB_GOOGLE_CLIENT_ID, IOS_GOOGLE_CLIENT_ID});
+
 GoogleSignin.configure({
     webClientId: WEB_GOOGLE_CLIENT_ID,
     iosClientId: IOS_GOOGLE_CLIENT_ID,
@@ -20,21 +22,33 @@ function LoginScreen() {
 
     const loginMutation = useMutation({
         mutationFn: loginWithGoogle,
-        onSuccess: async () => {
+        onSuccess: async (user) => {
+            console.log('Login successful:', user);
             await resetAndNavigate(screens.homeScreen);
         },
         onError: (error: any) => {
-            console.error('Login failed', error);
+            console.error('Login mutation failed:', error.response?.data || error.message);
         },
     });
 
     const handleGoogleSignIn = async () => {
         try {
+            console.log('Starting Google Sign In...');
             await GoogleSignin.hasPlayServices();
+            console.log('Play services available');
+
             const response = await GoogleSignin.signIn();
-            loginMutation.mutate(response?.data?.idToken as string);
+            console.log('Google Sign In response:', response);
+            console.log('ID Token:', response?.data?.idToken?.substring(0, 50) + '...');
+
+            if (!response?.data?.idToken) {
+                console.error('No idToken received from Google');
+                return;
+            }
+
+            loginMutation.mutate(response.data.idToken);
         } catch (error: any) {
-            console.error('Google Sign In failed', error);
+            console.error('Google Sign In failed:', error.code, error.message);
         }
     };
 

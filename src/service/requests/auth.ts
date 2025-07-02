@@ -6,10 +6,17 @@ import {resetAndNavigate} from '@/utils/NavigationUtils.ts';
 import {getRefreshToken, removeAccessToken, removeRefreshToken, setAccessToken, setRefreshToken} from '../storage.ts';
 
 export const loginWithGoogle = async (idToken: string) => {
-    const {data} = await apiClient.post(apis.loginApi, {idToken});
-    setAccessToken(data?.accessToken);
-    setRefreshToken(data?.refreshToken);
-    return data?.user; // possibly undefined https://www.notion.so/Backend-2110c027172280e0a92ade4b3e160805?source=copy_link#2120c0271722804284a0e798d18ebbba
+    console.log('Google login attempt with token:', idToken?.substring(0, 20) + '...');
+    try {
+        const {data} = await apiClient.post(apis.loginApi, {idToken});
+        console.log('Login response:', data);
+        setAccessToken(data?.accessToken);
+        setRefreshToken(data?.refreshToken);
+        return data?.user;
+    } catch (error: any) {
+        console.error('Login API error:', error.response?.data || error.message);
+        throw error;
+    }
 };
 
 export const logout = async () => {
