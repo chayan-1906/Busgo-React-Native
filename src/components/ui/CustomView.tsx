@@ -1,12 +1,10 @@
-import React from 'react';
-import {View, ViewProps} from 'react-native';
+import React, {forwardRef} from 'react';
+import {View} from 'react-native';
 
-interface ICustomViewProps extends ViewProps {
-    key?: string | number;
-}
+const CustomView = forwardRef<View, any>((props, ref) => {
+    return React.createElement(View, {...props, ref});
+});
 
-function CustomView({key, ...props}: ICustomViewProps) {
-    return <View {...props} />;
-}
+CustomView.displayName = 'CustomView';
 
 export default CustomView;

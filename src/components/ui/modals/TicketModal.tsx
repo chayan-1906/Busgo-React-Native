@@ -1,25 +1,30 @@
 import {useRef} from 'react';
 import {Modal, Platform, Text, TouchableOpacity, View} from 'react-native';
 import Share from 'react-native-share';
-import ViewShot from 'react-native-view-shot';
+import {captureRef} from 'react-native-view-shot';
 import Svg, {Circle, Line} from 'react-native-svg';
 import {ShareIcon, XMarkIcon} from 'react-native-heroicons/solid';
 import {TicketModalProps} from '@/types/props.ts';
+import CustomView from '@/components/ui/CustomView.tsx';
 
 function TicketModal({isVisible, onClose, bookingInfo}: TicketModalProps) {
-    const viewShotRef = useRef<ViewShot>(null);
+    const viewShotRef = useRef<View>(null);
 
     const handleShareTicket = async () => {
         try {
-            const uri = await viewShotRef.current?.capture?.();
-            if (!uri) return;
+            if (!viewShotRef.current) return;
+
+            const uri = await captureRef(viewShotRef, {
+                format: 'png',
+                quality: 1,
+                fileName: `ticket-${bookingInfo?.pnr}`,
+            });
 
             const shareOptions = {
                 title: 'My Bus Ticket',
                 url: Platform.OS === 'android' ? `file://${uri}` : uri,
                 type: 'image/png',
                 failOnCancel: false,
-                // message: 'Here is my ticket!',
             };
 
             await Share.open(shareOptions);
@@ -32,19 +37,22 @@ function TicketModal({isVisible, onClose, bookingInfo}: TicketModalProps) {
         <Modal transparent={true} visible={isVisible && bookingInfo !== undefined && bookingInfo.bus !== undefined} animationType={'slide'}>
             <View className={'flex-1 justify-center items-center'} style={{backgroundColor: 'rgba(42, 37, 38, 0.9)'}}>
                 <TouchableOpacity onPress={onClose} className={'mb-5 p-1 bg-white shadow-sm rounded-full'}>
-                    <XMarkIcon color={'black'} size={22} />
+                    <XMarkIcon color={'black'} size={22}/>
                 </TouchableOpacity>
 
                 {bookingInfo && bookingInfo.bus ? (
                     <View className={'bg-white overflow-hidden rounded-xl w-[90%] shadow-lg relative'}>
-                        <ViewShot ref={viewShotRef} options={{format: 'png', quality: 1, fileName: `ticket-${bookingInfo.pnr}`}} style={{backgroundColor: 'white', padding: 16}}>
+                        <CustomView
+                            ref={viewShotRef}
+                            style={{backgroundColor: 'white', padding: 16}}
+                        >
                             <View className={''}>
                                 <Text className={'text-center text-2xl font-okra-bold'}>Your Ticket</Text>
 
                                 {/** Divider */}
                                 <View className={'my-4 w-full'}>
                                     <Svg height={2} width={'100%'}>
-                                        <Line x1={0} y1={0} x2={'100%'} y2={1} stroke={'gray'} strokeWidth={2} strokeDasharray={'6,6'} />
+                                        <Line x1={0} y1={0} x2={'100%'} y2={1} stroke={'gray'} strokeWidth={2} strokeDasharray={'6,6'}/>
                                     </Svg>
                                 </View>
 
@@ -79,7 +87,7 @@ function TicketModal({isVisible, onClose, bookingInfo}: TicketModalProps) {
                                 {/** Divider */}
                                 <View className={'mt-7 w-full'}>
                                     <Svg height={2} width={'100%'}>
-                                        <Line x1={0} y1={0} x2={'100%'} y2={1} stroke={'gray'} strokeWidth={2} strokeDasharray={'6,6'} />
+                                        <Line x1={0} y1={0} x2={'100%'} y2={1} stroke={'gray'} strokeWidth={2} strokeDasharray={'6,6'}/>
                                     </Svg>
                                 </View>
 
@@ -97,17 +105,17 @@ function TicketModal({isVisible, onClose, bookingInfo}: TicketModalProps) {
                             {/** curves - svgs */}
                             <View className={`absolute left-[-14px] ${Platform.OS === 'android' ? 'top-[69%]' : 'top-[66%]'} -translate-y-1/2`}>
                                 <Svg height={40} width={28}>
-                                    <Circle cx={14} cy={20} r={14} fill={'#2A2526'} />
+                                    <Circle cx={14} cy={20} r={14} fill={'#2A2526'}/>
                                 </Svg>
                             </View>
                             <View className={`absolute right-[-14px] ${Platform.OS === 'android' ? 'top-[69%]' : 'top-[66%]'} -translate-y-1/2`}>
                                 <Svg height={40} width={28}>
-                                    <Circle cx={14} cy={20} r={14} fill={'#2A2526'} />
+                                    <Circle cx={14} cy={20} r={14} fill={'#2A2526'}/>
                                 </Svg>
                             </View>
-                        </ViewShot>
+                        </CustomView>
                         <TouchableOpacity className={'flex-row gap-2 py-3 px-4 mx-4 mb-4 rounded-lg justify-center items-center bg-tertiary'} onPress={handleShareTicket}>
-                            <ShareIcon color={'white'} size={16} />
+                            <ShareIcon color={'white'} size={16}/>
                             <Text className={'text-white font-okra-medium'}>Share your ticket</Text>
                         </TouchableOpacity>
                     </View>
