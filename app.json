@@ -17,6 +17,9 @@
         "foregroundImage": "./assets/images/logo.jpeg",
         "backgroundColor": "#ffffff"
       },
+      "androidStatusBar": {
+        "barStyle": "dark-content"
+      },
       "edgeToEdgeEnabled": true,
       "package": "com.pdas9647.busgo"
     },

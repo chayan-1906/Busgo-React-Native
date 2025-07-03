@@ -1,5 +1,5 @@
 import {useEffect, useMemo, useState} from 'react';
-import {ActivityIndicator, FlatList, Platform, RefreshControl, SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, FlatList, RefreshControl, Text, TouchableOpacity, View} from 'react-native';
 import {useQuery} from '@tanstack/react-query';
 import {useRoute} from '@react-navigation/native';
 import {useActionSheet} from '@expo/react-native-action-sheet';
@@ -56,8 +56,6 @@ function BusListScreen() {
 
     return (
         <View className={'flex-1 bg-white'}>
-            <SafeAreaView />
-
             {/** appbar */}
             <View className={'flex-row items-center justify-between border-b-[1px] border-teal-800 bg-white p-4'}>
                 <View className={'flex-row items-center'}>
@@ -110,7 +108,6 @@ function BusListScreen() {
                             </View>
                         }
                     />
-                    <SafeAreaView className={`${Platform.OS === 'android' && 'mb-4'}`} />
                 </>
             )}
         </View>

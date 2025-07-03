@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {ActivityIndicator, Alert, SafeAreaView, ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, Alert, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import Share from 'react-native-share';
 import {useFocusEffect, useRoute} from '@react-navigation/native';
 import {useMutation, useQuery} from '@tanstack/react-query';
@@ -100,7 +100,6 @@ function SeatSelectionScreen() {
 
     return (
         <View className={'flex-1 bg-white'}>
-            <SafeAreaView />
             <View className={'flex-row items-center justify-between border-b-[1px] border-teal-800 bg-white p-4'}>
                 <View className={'flex-row items-center'}>
                     <TouchableOpacity onPress={goBack}>

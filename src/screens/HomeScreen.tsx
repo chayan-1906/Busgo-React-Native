@@ -1,5 +1,5 @@
 import {useEffect} from 'react';
-import {Alert, Linking, SafeAreaView, Text, View} from 'react-native';
+import {Alert, Linking, Text, View} from 'react-native';
 import {UserCircleIcon} from 'react-native-heroicons/solid';
 import {screens} from '@/utils/constants';
 import {navigate} from '@/utils/NavigationUtils';
@@ -8,7 +8,7 @@ import Bookings from '@/components/home/Bookings.tsx';
 
 function HomeScreen() {
     useEffect(() => {
-        const handleUrl = async ({url}: {url: string}) => {
+        const handleUrl = async ({url}: { url: string }) => {
             console.log('Handling URL:', url);
             if (url?.includes('bus/')) {
                 const busExternalId = url.split('bus/')[1];
@@ -43,13 +43,11 @@ function HomeScreen() {
 
     return (
         <View className={'flex-1 bg-white'}>
-            <SafeAreaView />
-
             <View className={'flex-row justify-between items-center px-4 py-2'}>
                 <Text className={'text-3xl font-okra-bold'}>Welcome to BusGo</Text>
-                <UserCircleIcon color={'red'} size={38} onPress={handleLogout} />
+                <UserCircleIcon color={'red'} size={38} onPress={handleLogout}/>
             </View>
-            <Bookings />
+            <Bookings/>
         </View>
     );
 }
