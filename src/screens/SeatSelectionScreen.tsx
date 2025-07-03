@@ -1,4 +1,4 @@
-import {useCallback, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {ActivityIndicator, Alert, SafeAreaView, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import Share from 'react-native-share';
 import {useFocusEffect, useRoute} from '@react-navigation/native';
@@ -7,6 +7,7 @@ import {ArrowLeftIcon, ShareIcon, StarIcon} from 'react-native-heroicons/solid';
 import {IBus, ITicket} from '@/types';
 import Seat from '@/components/ui/Seat.tsx';
 import {screens} from '@/utils/constants.ts';
+import CustomView from '@/components/ui/CustomView';
 import {generateBusDetailsLink} from '@/utils/deeplinks.ts';
 import PaymentButton from '@/components/ui/PaymentButton.tsx';
 import TicketModal from '@/components/ui/modals/TicketModal.tsx';
@@ -65,9 +66,6 @@ function SeatSelectionScreen() {
         const link = generateBusDetailsLink(busExternalId!);
         const shareOptions = {
             title: 'Share Bus Details',
-            // url: Platform.OS === 'android' ? `file://${uri}` : uri,
-            // type: 'image/png',
-            // failOnCancel: false,
             message: `Check out this bus: ${link}`,
         };
 
@@ -158,13 +156,11 @@ function SeatSelectionScreen() {
                     </View>
 
                     <View className={'flex-row gap-2 mt-3 flex-wrap'}>
-                        {busInfo.badges.map((badge: string, index: number) => {
-                            return (
-                                <View key={index} className={'bg-yellow-200 px-3 py-1 rounded-full'}>
-                                    <Text className={'text-yellow-700 font-okra-medium'}>{badge}</Text>
-                                </View>
-                            );
-                        })}
+                        {busInfo.badges.map((badge: string, index: number) => (
+                            <CustomView key={index} className={'bg-yellow-200 px-3 py-1 rounded-full'}>
+                                <Text className={'text-yellow-700 font-okra-medium'}>{badge}</Text>
+                            </CustomView>
+                        ))}
                     </View>
                 </View>
             </ScrollView>

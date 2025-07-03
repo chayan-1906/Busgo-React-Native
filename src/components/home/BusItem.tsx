@@ -1,9 +1,11 @@
+import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {StarIcon} from 'react-native-heroicons/solid';
 import LinearGradient from 'react-native-linear-gradient';
 import {IBus} from '@/types';
 import {screens} from '@/utils/constants.ts';
 import {navigate} from '@/utils/NavigationUtils.ts';
+import CustomView from '@/components/ui/CustomView';
 import {generateHrMinFromDuration} from '@/utils/generateHrMinFromDuration.ts';
 
 function BusItem({item: bus}: {item: IBus}) {
@@ -78,13 +80,11 @@ function BusItem({item: bus}: {item: IBus}) {
 
                     {/** Badges */}
                     <View className={'flex-row gap-2 mt-2 flex-wrap'}>
-                        {bus.badges.map((badge: string) => {
-                            return (
-                                <View key={badge} className={'rounded-full px-2 py-1 bg-primary'}>
-                                    <Text className={'text-xs text-white font-okra-medium'}>{badge}</Text>
-                                </View>
-                            );
-                        })}
+                        {bus.badges.map((badge: string, index: number) => (
+                            <CustomView key={badge + index} className={'rounded-full px-2 py-1 bg-primary'}>
+                                <Text className={'text-xs text-white font-okra-medium'}>{badge}</Text>
+                            </CustomView>
+                        ))}
                     </View>
                 </View>
             </View>
