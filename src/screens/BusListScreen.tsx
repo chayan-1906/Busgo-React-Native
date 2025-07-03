@@ -1,8 +1,8 @@
-import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import {ActivityIndicator, FlatList, Platform, RefreshControl, SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
 import {useQuery} from '@tanstack/react-query';
 import {useRoute} from '@react-navigation/native';
-import ActionSheet from 'react-native-actionsheet';
+import {useActionSheet} from '@expo/react-native-action-sheet';
 import {AdjustmentsHorizontalIcon, ArrowLeftIcon} from 'react-native-heroicons/solid';
 import {IBus, IFilterOption} from '@/types';
 import Filter from '@/components/ui/Filter.tsx';
@@ -14,15 +14,28 @@ import {busTags, sortByOptions} from '@/utils/constants.ts';
 function BusListScreen() {
     const route = useRoute();
     const params = route.params as any;
-    const {from, to, date} = params?.bus as Partial<IBus> & {date: Date};
+    const {from, to, date: dateString} = params?.bus as Partial<IBus> & { date: string };
+    const date = new Date(dateString);
     const [selectedBusTags, setSelectedBusTags] = useState<IFilterOption[]>([]);
     const [selectedSortBy, setSelectedSortBy] = useState<IFilterOption>(sortByOptions[0]);
-    const actionSheetRef = useRef<ActionSheet>(null);
+    const {showActionSheetWithOptions} = useActionSheet();
 
-    const getOptions = () => {
-        const displayOptions = sortByOptions.map(option => (option.value === selectedSortBy.value ? `✓ ${option.label}` : option.label));
+    const showSortOptions = () => {
+        const options = sortByOptions.map(option => option.label);
+        options.push('Cancel');
 
-        return [...displayOptions, 'Cancel'];
+        showActionSheetWithOptions(
+            {
+                options,
+                cancelButtonIndex: options.length - 1,
+                title: 'Sort by',
+            },
+            (buttonIndex) => {
+                if (buttonIndex !== undefined && buttonIndex < sortByOptions.length) {
+                    setSelectedSortBy(sortByOptions[buttonIndex]);
+                }
+            }
+        );
     };
 
     const formattedDate = useMemo(() => date.toISOString().split('T')[0], [date]);
@@ -36,14 +49,6 @@ function BusListScreen() {
         queryFn: async () => searchBuses(from!, to!, formattedDate!, selectedBusTags, selectedSortBy),
         enabled: !!from && !!to && !!date,
     });
-
-    const handleSelect = useCallback((index: number) => {
-        const cancelIndex = sortByOptions.length;
-        if (index !== cancelIndex) {
-            const selected = sortByOptions[index];
-            setSelectedSortBy(selected);
-        }
-    }, []);
 
     useEffect(() => {
         refetch();
@@ -68,7 +73,7 @@ function BusListScreen() {
                 </View>
 
                 {/** Sort */}
-                <TouchableOpacity onPress={() => actionSheetRef.current?.show()}>
+                <TouchableOpacity onPress={showSortOptions}>
                     <AdjustmentsHorizontalIcon size={24} color={'#000'} />
                 </TouchableOpacity>
             </View>
@@ -108,8 +113,6 @@ function BusListScreen() {
                     <SafeAreaView className={`${Platform.OS === 'android' && 'mb-4'}`} />
                 </>
             )}
-
-            <ActionSheet ref={actionSheetRef} options={getOptions()} cancelButtonIndex={sortByOptions.length} onPress={handleSelect} tintColor={'#CF3239'} />
         </View>
     );
 }
