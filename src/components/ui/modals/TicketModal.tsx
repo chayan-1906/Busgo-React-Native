@@ -1,24 +1,19 @@
-import {useRef} from 'react';
+import React, {useRef} from 'react';
 import {Modal, Platform, Text, TouchableOpacity, View} from 'react-native';
 import Share from 'react-native-share';
-import {captureRef} from 'react-native-view-shot';
 import Svg, {Circle, Line} from 'react-native-svg';
 import {ShareIcon, XMarkIcon} from 'react-native-heroicons/solid';
 import {TicketModalProps} from '@/types/props.ts';
-import CustomView from '@/components/ui/CustomView.tsx';
+import CustomView from '../CustomView';
 
 function TicketModal({isVisible, onClose, bookingInfo}: TicketModalProps) {
-    const viewShotRef = useRef<View>(null);
+    const viewShotRef = useRef<any>(null);
 
     const handleShareTicket = async () => {
         try {
             if (!viewShotRef.current) return;
 
-            const uri = await captureRef(viewShotRef, {
-                format: 'png',
-                quality: 1,
-                fileName: `ticket-${bookingInfo?.pnr}`,
-            });
+            const uri = await viewShotRef.current.capture();
 
             const shareOptions = {
                 title: 'My Bus Ticket',

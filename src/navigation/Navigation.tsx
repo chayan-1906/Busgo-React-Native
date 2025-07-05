@@ -31,7 +31,7 @@ function Navigation() {
     return (
         <SafeAreaView style={{flex: 1}}>
             <NavigationContainer ref={navigationRef} linking={linking}>
-                <StatusBar style="auto"/>
+                <StatusBar style={'auto'}/>
                 <SafeAreaView/>
                 <Stack.Navigator {...{} as any} initialRouteName={screens.splashScreen} screenOptions={{headerShown: false}}>
                     <Stack.Screen name={screens.splashScreen} component={SplashScreen}/>
