@@ -1,50 +1,224 @@
-# Welcome to your Expo app 👋
+# 🚌 BusGo - Bus Booking App (Expo)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+[![Expo](https://img.shields.io/badge/Expo-53.0.15-000000.svg)](https://expo.dev/)
+[![React Native](https://img.shields.io/badge/React%20Native-0.79.4-blue.svg)](https://reactnative.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue.svg)](https://www.typescriptlang.org/)
+[![TanStack Query](https://img.shields.io/badge/TanStack%20Query-5.81.5-orange.svg)](https://tanstack.com/query)
+[![NativeWind](https://img.shields.io/badge/NativeWind-4.1.23-06B6D4.svg)](https://www.nativewind.dev/)
 
-## Get started
+> Modern bus booking application built with Expo and React Native, featuring Google Sign-In, interactive seat selection, and seamless booking management.
 
-1. Install dependencies
+## ✨ Features
 
+- 🎨 **Modern UI/UX** - NativeWind with custom Okra typography
+- 🚌 **Bus Booking** - Search routes, select seats, manage bookings
+- 🔐 **Google Sign-In** - Secure OAuth authentication
+- 📱 **Cross-Platform** - iOS and Android support
+- 🪑 **Interactive Seats** - Real-time seat availability
+- 🔗 **Deep Linking** - Direct bus access via URLs
+- ⚡ **TanStack Query** - Efficient data fetching
+- 💾 **MMKV Storage** - Fast local storage
+- 🎯 **TypeScript** - Full type safety
+
+## 📱 Download
+
+[**Download APK**](https://github.com/chayan-1906/Busgo-React-Native/releases/latest)
+
+## 🏗️ Tech Stack
+
+### 📱 Frontend
+
+- **Expo** 53.0.15 - Development platform
+- **React Native** 0.79.4 - Mobile framework
+- **TypeScript** 5.8.3 - Type safety
+- **React Navigation** 7.x - Navigation
+
+### 🔄 State Management
+
+- **TanStack Query** 5.81.5 - Server state
+- **Axios** 1.10.0 - HTTP client
+
+### 🎨 UI & Styling
+
+- **NativeWind** 4.1.23 - Tailwind CSS
+- **Expo Vector Icons** 14.1.0 - Icons
+- **React Native Linear Gradient** 2.8.3 - Gradients
+- **React Native Heroicons** 4.0.0 - Hero icons
+
+### 🔧 Device Features
+
+- **Google Sign-In** 15.0.0 - Authentication
+- **MMKV** 3.3.0 - Storage
+- **DateTimePicker** 8.4.2 - Date selection
+- **Reanimated** 3.18.0 - Animations
+- **Expo Action Sheet** 4.1.1 - Action sheets
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- Expo CLI
+- Expo account
+
+### Installation
+
+1. **Clone repository**
+   ```bash
+   git clone https://github.com/chayan-1906/Busgo-React-Native.git
+   cd Busgo-React-Native
+   git checkout expo-prebuild
+   ```
+
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-2. Start the app
-
+3. **Environment setup**
    ```bash
-   npx expo start
+   cp .env.example .env
    ```
 
-In the output, you'll find options to open the app in a
+4. **Configure environment**
+   ```env
+   EXPO_PUBLIC_WEB_GOOGLE_CLIENT_ID=your_web_client_id
+   EXPO_PUBLIC_ANDROID_GOOGLE_CLIENT_ID=your_android_client_id
+   EXPO_PUBLIC_IOS_GOOGLE_CLIENT_ID=your_ios_client_id
+   ```
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+5. **Start development**
+   ```bash
+   # Start Expo dev server
+   npm start
+   
+   # iOS
+   npm run ios
+   
+   # Android
+   npm run android
+   ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 📦 Build for Production
 
-## Get a fresh project
-
-When you're ready, run:
+### Android APK
 
 ```bash
-npm run reset-project
+npm run generate-apk
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### iOS Build
+```bash
+npm run ios
+```
 
-## Learn more
+## 🏗️ Project Structure
 
-To learn more about developing your project with Expo, look at the following resources:
+```
+src/
+├── components/         # Reusable UI components
+├── navigation/         # Navigation configuration
+├── screens/           # Application screens
+├── service/           # API client and requests
+├── types/             # TypeScript definitions
+└── utils/             # Utility functions
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 🗄️ Backend API
 
-## Join the community
+Uses hosted Node.js backend.
 
-Join our community of developers creating universal apps.
+### API URL
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```
+https://busgo-node-js.onrender.com/api/v1
+```
+
+### Repository
+
+[🔗 BusGo Node.js Backend](https://github.com/chayan-1906/BusGo-Node.js)
+
+## 🔗 Deep Linking
+
+### URL Scheme
+
+```
+busgo://bus/{busExternalId}
+```
+
+### Configuration
+
+- **Scheme:** `busgo`
+- **Bundle ID:** `com.pdas9647.busgo`
+- **Package:** `com.pdas9647.busgo`
+
+## 🎯 Key Features
+
+### New Architecture
+
+- **Enabled:** React Native New Architecture
+- **Fabric:** UI rendering
+- **TurboModules:** Native modules
+
+### Expo Features
+
+- **Expo Font:** Custom font loading
+- **Expo Constants:** Environment variables
+- **Expo Splash Screen:** Loading screen
+
+### Cross-Platform
+
+- **iOS:** Native iOS app
+- **Android:** Native Android app
+
+## 📋 Requirements
+
+### Development
+
+- **Node.js:** ≥18.0.0
+- **Expo CLI:** Latest
+- **Xcode:** 15+ (iOS)
+- **Android Studio:** Latest
+
+### Runtime
+
+- **iOS:** 13.0+
+- **Android:** API 21+
+
+## 🔧 Scripts
+
+```bash
+# Development
+npm start                 # Start Expo dev server
+npm run android          # Run on Android
+npm run ios              # Run on iOS
+
+# Build
+npm run generate-apk     # Build Android APK
+npm run pod-install      # Install iOS pods
+```
+
+## 👨‍💻 Author
+
+**Padmanabha Das**
+
+- GitHub: [@chayan-1906](https://github.com/chayan-1906)
+- LinkedIn: [Padmanabha Das](https://www.linkedin.com/in/padmanabha-das-59bb2019b/)
+- Email: padmanabhadas9647@gmail.com
+
+## 🌟 Show Your Support
+
+Give a ⭐️ if this project helped you!
+
+## 📱 Related Projects
+
+- **Backend API:** [BusGo Node.js](https://github.com/chayan-1906/BusGo-Node.js)
+- **Bare React Native:** [BusGo Bare](https://github.com/chayan-1906/Busgo-React-Native/tree/attractive-ui)
+
+---
+
+<div align="center">
+  <p>Made with ❤️ by Padmanabha Das</p>
+  <p>⭐ Star this repo if you found it helpful!</p>
+  <p><strong>Expo Version</strong> - Enhanced with cross-platform support</p>
+</div>

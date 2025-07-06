@@ -12,6 +12,7 @@
     "generate-apk": "cd android && .\\gradlew assembleRelease"
   },
   "dependencies": {
+    "@expo/react-native-action-sheet": "^4.1.1",
     "@expo/vector-icons": "^14.1.0",
     "@react-native-community/datetimepicker": "^8.4.2",
     "@react-native-google-signin/google-signin": "^15.0.0",
@@ -31,7 +32,6 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-native": "0.79.4",
-    "react-native-actionsheet": "^2.4.2",
     "react-native-css-interop": "^0.1.22",
     "react-native-dotenv": "^3.4.11",
     "react-native-gesture-handler": "~2.27.1",
@@ -43,7 +43,9 @@
     "react-native-screens": "~4.11.1",
     "react-native-share": "^12.1.0",
     "react-native-svg": "^15.9.0",
-    "react-native-view-shot": "^4.0.3"
+    "react-native-view-shot": "^4.0.3",
+    "react-native-web": "^0.20.0",
+    "@expo/metro-runtime": "~5.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",

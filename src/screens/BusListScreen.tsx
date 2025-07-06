@@ -1,8 +1,8 @@
-import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import {useCallback, useEffect, useMemo, useState} from 'react';
 import {ActivityIndicator, FlatList, Platform, RefreshControl, SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
 import {useQuery} from '@tanstack/react-query';
 import {useRoute} from '@react-navigation/native';
-import ActionSheet from 'react-native-actionsheet';
+import {useActionSheet} from '@expo/react-native-action-sheet';
 import {AdjustmentsHorizontalIcon, ArrowLeftIcon} from 'react-native-heroicons/solid';
 import {IBus, IFilterOption} from '@/types';
 import Filter from '@/components/ui/Filter.tsx';
@@ -17,13 +17,7 @@ function BusListScreen() {
     const {from, to, date} = params?.bus as Partial<IBus> & { date: Date };
     const [selectedBusTags, setSelectedBusTags] = useState<IFilterOption[]>([]);
     const [selectedSortBy, setSelectedSortBy] = useState<IFilterOption>(sortByOptions[0]);
-    const actionSheetRef = useRef<any>(null);
-
-    const getOptions = () => {
-        const displayOptions = sortByOptions.map(option => (option.value === selectedSortBy.value ? `✓ ${option.label}` : option.label));
-
-        return [...displayOptions, 'Cancel'];
-    };
+    const {showActionSheetWithOptions} = useActionSheet();
 
     const formattedDate = useMemo(() => date.toISOString().split('T')[0], [date]);
     const {
@@ -37,14 +31,35 @@ function BusListScreen() {
         enabled: !!from && !!to && !!date,
     });
 
-    const handleSelect = useCallback((index: number) => {
+    const handleSelect = useCallback((buttonIndex?: number) => {
+        if (buttonIndex === undefined) return;
         const cancelIndex = sortByOptions.length;
-        if (index !== cancelIndex) {
-            const selected = sortByOptions[index];
-            setSelectedSortBy(selected);
+        if (buttonIndex < cancelIndex) {
+            setSelectedSortBy(sortByOptions[buttonIndex]);
         }
     }, []);
 
+    const showActionSheet = useCallback(() => {
+        const displayOptions = sortByOptions.map(option =>
+            option.value === selectedSortBy.value ? `✓ ${option.label}` : option.label
+        );
+        const options = [...displayOptions, 'Cancel'];
+        const cancelButtonIndex = sortByOptions.length;
+
+        showActionSheetWithOptions(
+            {
+                options,
+                cancelButtonIndex,
+                tintColor: '#CF3239',
+                showSeparators: true,
+                textStyle: {
+                    textAlign: 'center',
+                    fontSize: 16,
+                },
+                containerStyle: {paddingBottom: Platform.OS === 'android' ? 30 : 0},
+            },
+            handleSelect);
+    }, [showActionSheetWithOptions, handleSelect, selectedSortBy.value]);
     useEffect(() => {
         refetch();
     }, [refetch, selectedBusTags, selectedSortBy]);
@@ -68,7 +83,7 @@ function BusListScreen() {
                 </View>
 
                 {/** Sort */}
-                <TouchableOpacity onPress={() => actionSheetRef.current?.show()}>
+                <TouchableOpacity onPress={showActionSheet}>
                     <AdjustmentsHorizontalIcon size={24} color={'#000'}/>
                 </TouchableOpacity>
             </View>
@@ -108,8 +123,6 @@ function BusListScreen() {
                     <SafeAreaView className={`${Platform.OS === 'android' && 'mb-4'}`}/>
                 </>
             )}
-
-            <ActionSheet ref={actionSheetRef} options={getOptions()} cancelButtonIndex={sortByOptions.length} onPress={handleSelect} tintColor={'#CF3239'}/>
         </View>
     );
 }

@@ -2,6 +2,7 @@ import {useEffect} from 'react';
 import {Linking} from 'react-native';
 import {useFonts} from "expo-font";
 import * as ExpoSplashScreen from 'expo-splash-screen';
+import {ActionSheetProvider} from '@expo/react-native-action-sheet';
 import './global.css';
 import queryClient from '@/service/queryClient';
 import Navigation from '@/navigation/Navigation';
@@ -45,7 +46,9 @@ function App() {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <Navigation/>
+            <ActionSheetProvider>
+                <Navigation/>
+            </ActionSheetProvider>
         </QueryClientProvider>
     );
 }
