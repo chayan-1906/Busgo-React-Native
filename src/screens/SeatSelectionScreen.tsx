@@ -115,7 +115,7 @@ function SeatSelectionScreen() {
                     </View>
                 </View>
                 <TouchableOpacity onPress={handleShare}>
-                    <ShareIcon />
+                    <ShareIcon color={'black'}/>
                 </TouchableOpacity>
             </View>
 

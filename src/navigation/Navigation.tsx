@@ -1,7 +1,7 @@
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {StatusBar} from "expo-status-bar";
 import {SafeAreaView} from "react-native-safe-area-context";
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {screens} from '@/utils/constants';
 import {scheme} from "@/utils/deeplinks.ts";
 import HomeScreen from '@/screens/HomeScreen';
@@ -32,7 +32,6 @@ function Navigation() {
         <SafeAreaView style={{flex: 1}}>
             <NavigationContainer ref={navigationRef} linking={linking}>
                 <StatusBar style={'auto'}/>
-                <SafeAreaView/>
                 <Stack.Navigator {...{} as any} initialRouteName={screens.splashScreen} screenOptions={{headerShown: false}}>
                     <Stack.Screen name={screens.splashScreen} component={SplashScreen}/>
                     <Stack.Screen name={screens.loginScreen} component={LoginScreen}/>
