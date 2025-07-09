@@ -92,31 +92,26 @@
    cd Busgo-React-Native
    ```
 
-2. **Switch to expo-prebuild branch**
-   ```bash
-   git checkout expo-prebuild
-   ```
-
-3. **Install dependencies**
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-4. **iOS Setup** (Mac only)
+3. **iOS Setup** (Mac only)
    ```bash
    npm run pod-install
    ```
 
-5. **Environment Setup**
+4. **Environment Setup**
    
    Create `.env` file (refer to .env.example)
 
-6. **Start Expo dev server**
+5. **Start Expo dev server**
    ```bash
    npm start
    ```
 
-7. **Run on device/simulator**
+6. **Run on device/simulator**
    ```bash
    # Android
    npm run android
