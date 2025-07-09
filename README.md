@@ -24,10 +24,10 @@
 ## 📱 Screenshots
 
 <div>
-  <img src="https://github.com/user-attachments/assets/268bb0f8-f710-4483-b22f-f5d7a5b3deeb" width="200" alt="Login Screen" />
+  <img src="https://github.com/user-attachments/assets/d1286b6f-4977-4cfa-a757-6a5fe37d3887" width="200" alt="LoginScreen" />
   <img src="https://github.com/user-attachments/assets/c8498dd7-b78b-40cf-b9df-28de01548916" width="200" alt="Home Screen" />
   <img src="https://github.com/user-attachments/assets/d5144af2-3140-4812-ae4d-7c9cc8a7cbd7" width="200" alt="DatePicker" />
-  <img src="https://github.com/user-attachments/assets/d1286b6f-4977-4cfa-a757-6a5fe37d3887" width="200" alt="BusListScreen" />
+  <img src="https://github.com/user-attachments/assets/268bb0f8-f710-4483-b22f-f5d7a5b3deeb" width="200" alt="BusListScreen" />
   <img src="https://github.com/user-attachments/assets/5fc3aba5-f405-4c4b-8455-a2194d7b7f87" width="200" alt="Sort" />
   <img src="https://github.com/user-attachments/assets/74c0f19c-a770-41f7-8cbb-117e122a1cf6" width="200" alt="SeatSelectionScreen" />
   <img src="https://github.com/user-attachments/assets/bdf9a743-5e65-4cb4-b6d4-856d944a01d4" width="200" alt="Ticket Modal" />
