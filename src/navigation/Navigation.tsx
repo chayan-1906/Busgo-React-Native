@@ -1,5 +1,4 @@
 import {StatusBar} from "expo-status-bar";
-import {SafeAreaView} from "react-native-safe-area-context";
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {screens} from '@/utils/constants';
@@ -10,38 +9,39 @@ import SplashScreen from '@/screens/SplashScreen';
 import {navigationRef} from '@/utils/NavigationUtils';
 import BusListScreen from '@/screens/BusListScreen.tsx';
 import SeatSelectionScreen from '@/screens/SeatSelectionScreen.tsx';
+import {View} from "react-native";
 
 const Stack = createNativeStackNavigator();
 
 function Navigation() {
-    const linking = {
-        prefixes: [`${scheme}://`],
-        config: {
-            screens: {
-                [screens.seatSelectionScreen]: {
-                    path: 'bus/:busExternalId',
-                    parse: {
-                        busExternalId: (busExternalId: string) => busExternalId,
-                    },
-                },
-            },
-        },
-    };
+	const linking = {
+		prefixes: [`${scheme}://`],
+		config: {
+			screens: {
+				[screens.seatSelectionScreen]: {
+					path: 'bus/:busExternalId',
+					parse: {
+						busExternalId: (busExternalId: string) => busExternalId,
+					},
+				},
+			},
+		},
+	};
 
-    return (
-        <SafeAreaView style={{flex: 1}}>
-            <NavigationContainer ref={navigationRef} linking={linking}>
-                <StatusBar style={'auto'}/>
-                <Stack.Navigator {...{} as any} initialRouteName={screens.splashScreen} screenOptions={{headerShown: false}}>
-                    <Stack.Screen name={screens.splashScreen} component={SplashScreen}/>
-                    <Stack.Screen name={screens.loginScreen} component={LoginScreen}/>
-                    <Stack.Screen name={screens.homeScreen} component={HomeScreen}/>
-                    <Stack.Screen name={screens.busListScreen} component={BusListScreen}/>
-                    <Stack.Screen name={screens.seatSelectionScreen} component={SeatSelectionScreen}/>
-                </Stack.Navigator>
-            </NavigationContainer>
-        </SafeAreaView>
-    );
+	return (
+		<View style={{flex: 1}}>
+			<NavigationContainer ref={navigationRef} linking={linking}>
+				<StatusBar style={'auto'}/>
+				<Stack.Navigator {...{} as any} initialRouteName={screens.splashScreen} screenOptions={{headerShown: false}}>
+					<Stack.Screen name={screens.splashScreen} component={SplashScreen}/>
+					<Stack.Screen name={screens.loginScreen} component={LoginScreen}/>
+					<Stack.Screen name={screens.homeScreen} component={HomeScreen}/>
+					<Stack.Screen name={screens.busListScreen} component={BusListScreen}/>
+					<Stack.Screen name={screens.seatSelectionScreen} component={SeatSelectionScreen}/>
+				</Stack.Navigator>
+			</NavigationContainer>
+		</View>
+	);
 }
 
 export default Navigation;

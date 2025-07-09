@@ -20,7 +20,33 @@
 - 💾 **MMKV Storage** - Fast local storage
 - 🎯 **TypeScript** - Full type safety
 
-## 📱 Download
+## 📱 Screenshots
+
+<img src="https://github.com/user-attachments/assets/268bb0f8-f710-4483-b22f-f5d7a5b3deeb" alt="Login Screen" width="200" />
+
+<img src="https://github.com/user-attachments/assets/c8498dd7-b78b-40cf-b9df-28de01548916" alt="Home Screen" width="200" />
+
+<img src="https://github.com/user-attachments/assets/d5144af2-3140-4812-ae4d-7c9cc8a7cbd7" alt="Date Picker" width="200" />
+
+<img src="https://github.com/user-attachments/assets/d1286b6f-4977-4cfa-a757-6a5fe37d3887" alt="BusListScreen" width="200" />
+
+<img src="https://github.com/user-attachments/assets/5fc3aba5-f405-4c4b-8455-a2194d7b7f87" alt="Sort" width="200" />
+
+<img src="https://github.com/user-attachments/assets/74c0f19c-a770-41f7-8cbb-117e122a1cf6" alt="SeatSelectionScreen" width="200"/>
+
+<img src="https://github.com/user-attachments/assets/bdf9a743-5e65-4cb4-b6d4-856d944a01d4" alt="Ticket Modal" width="200" />
+
+## 🎥 Demo Video
+
+<div align="center">
+
+https://github.com/user-attachments/assets/ec339991-5aad-485f-ab64-a380b81f5adc
+
+*Watch the full app demo showcasing key features*
+
+</div>
+
+## 📱 Download & Try
 
 [**Download APK**](https://github.com/chayan-1906/Busgo-React-Native/releases/latest)
 
@@ -108,6 +134,7 @@ npm run generate-apk
 ```
 
 ### iOS Build
+
 ```bash
 npm run ios
 ```

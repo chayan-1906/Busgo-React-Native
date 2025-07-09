@@ -1,6 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import {ActivityIndicator, Alert, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import Share from 'react-native-share';
+import {SafeAreaView} from "react-native-safe-area-context";
 import {useFocusEffect, useRoute} from '@react-navigation/native';
 import {useMutation, useQuery} from '@tanstack/react-query';
 import {ArrowLeftIcon, ShareIcon, StarIcon} from 'react-native-heroicons/solid';
@@ -16,170 +17,170 @@ import {goBack, resetAndNavigate} from '@/utils/NavigationUtils.ts';
 import {generateHrMinFromDuration} from '@/utils/generateHrMinFromDuration.ts';
 
 function SeatSelectionScreen() {
-    const route = useRoute();
-    const params = route.params as any;
-    const {busExternalId} = params as Partial<IBus>;
+	const route = useRoute();
+	const params = route.params as any;
+	const {busExternalId} = params as Partial<IBus>;
 
-    const [isTicketVisible, setIsTicketVisible] = useState<boolean>(false);
-    const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
+	const [isTicketVisible, setIsTicketVisible] = useState<boolean>(false);
+	const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
 
-    const {
-        data: busInfo,
-        isLoading,
-        isError,
-        refetch,
-    } = useQuery<IBus>({
-        queryKey: ['busDetails', busExternalId],
-        queryFn: async () => getBusDetails(busExternalId!),
-        enabled: !!busExternalId,
-    });
+	const {
+		data: busInfo,
+		isLoading,
+		isError,
+		refetch,
+	} = useQuery<IBus>({
+		queryKey: ['busDetails', busExternalId],
+		queryFn: async () => getBusDetails(busExternalId!),
+		enabled: !!busExternalId,
+	});
 
-    const bookTicketMutation = useMutation({
-        mutationFn: async ({date, seatNumbers}: Partial<ITicket>) => await bookTicket(busExternalId!, date!, seatNumbers!),
-        onSuccess: (ticket: ITicket) => {
-            console.log('Ticket booked successfully 🎉', ticket);
-            setIsTicketVisible(true);
-        },
-        onError: (error: any) => {
-            console.log('Error booking ticket ❌', error);
-            Alert.alert('Failed', 'Failed to book ticket, please try again later');
-        },
-    });
+	const bookTicketMutation = useMutation({
+		mutationFn: async ({date, seatNumbers}: Partial<ITicket>) => await bookTicket(busExternalId!, date!, seatNumbers!),
+		onSuccess: (ticket: ITicket) => {
+			console.log('Ticket booked successfully 🎉', ticket);
+			setIsTicketVisible(true);
+		},
+		onError: (error: any) => {
+			console.log('Error booking ticket ❌', error);
+			Alert.alert('Failed', 'Failed to book ticket, please try again later');
+		},
+	});
 
-    const handleSeatSelection = (seatId: number) => {
-        setSelectedSeats((prevSelections: number[]) => (prevSelections.includes(seatId) ? prevSelections.filter((selectedSeatId: number) => selectedSeatId !== seatId) : [...prevSelections, seatId]));
-    };
+	const handleSeatSelection = (seatId: number) => {
+		setSelectedSeats((prevSelections: number[]) => (prevSelections.includes(seatId) ? prevSelections.filter((selectedSeatId: number) => selectedSeatId !== seatId) : [...prevSelections, seatId]));
+	};
 
-    const handleOnPay = () => {
-        if (!busInfo) {
-            Alert.alert('Failed', 'Failed to load bus details');
-            return;
-        }
-        if (selectedSeats.length === 0) {
-            Alert.alert('Invalid Selection', 'Please select at least one seat');
-            return;
-        }
-        bookTicketMutation.mutate({date: new Date(busInfo.departureTime).toISOString(), seatNumbers: selectedSeats});
-    };
+	const handleOnPay = () => {
+		if (!busInfo) {
+			Alert.alert('Failed', 'Failed to load bus details');
+			return;
+		}
+		if (selectedSeats.length === 0) {
+			Alert.alert('Invalid Selection', 'Please select at least one seat');
+			return;
+		}
+		bookTicketMutation.mutate({date: new Date(busInfo.departureTime).toISOString(), seatNumbers: selectedSeats});
+	};
 
-    const handleShare = async () => {
-        const link = generateBusDetailsLink(busExternalId!);
-        const shareOptions = {
-            title: 'Share Bus Details',
-            message: `Check out this bus: ${link}`,
-        };
+	const handleShare = async () => {
+		const link = generateBusDetailsLink(busExternalId!);
+		const shareOptions = {
+			title: 'Share Bus Details',
+			message: `Check out this bus: ${link}`,
+		};
 
-        await Share.open(shareOptions);
-    };
+		await Share.open(shareOptions);
+	};
 
-    useFocusEffect(
-        useCallback(() => {
-            refetch();
-        }, [refetch]),
-    );
+	useFocusEffect(
+		useCallback(() => {
+			refetch();
+		}, [refetch]),
+	);
 
-    if (isLoading) {
-        return (
-            <View className={'flex-1 items-center justify-center bg-white'}>
-                <ActivityIndicator size={'large'} color={'teal'} />
-                <Text className={'mt-2 text-gray-500 font-okra-bold'}>Loading bus details...</Text>
-            </View>
-        );
-    }
+	if (isLoading) {
+		return (
+			<View className={'flex-1 items-center justify-center bg-white'}>
+				<ActivityIndicator size={'large'} color={'teal'}/>
+				<Text className={'mt-2 text-gray-500 font-okra-bold'}>Loading bus details...</Text>
+			</View>
+		);
+	}
 
-    if (isError || !busInfo) {
-        return (
-            <View className={'flex-1 items-center justify-center bg-white'}>
-                <Text className={'text-tertiary font-okra-bold'}>Failed to load bus details</Text>
-                <TouchableOpacity className={'mt-4 px-4 py-2 bg-teal-500 rounded'} onPress={goBack}>
-                    <Text className={'text-white font-okra-medium'}>Go Back</Text>
-                </TouchableOpacity>
-            </View>
-        );
-    }
+	if (isError || !busInfo) {
+		return (
+			<View className={'flex-1 items-center justify-center bg-white'}>
+				<Text className={'text-tertiary font-okra-bold'}>Failed to load bus details</Text>
+				<TouchableOpacity className={'mt-4 px-4 py-2 bg-teal-500 rounded'} onPress={goBack}>
+					<Text className={'text-white font-okra-medium'}>Go Back</Text>
+				</TouchableOpacity>
+			</View>
+		);
+	}
 
-    return (
-        <View className={'flex-1 bg-white'}>
-            <View className={'flex-row items-center justify-between border-b-[1px] border-teal-800 bg-white p-4'}>
-                <View className={'flex-row items-center'}>
-                    <TouchableOpacity onPress={goBack}>
-                        <ArrowLeftIcon size={24} color={'#000'} />
-                    </TouchableOpacity>
-                    <View className={'ml-4'}>
-                        <Text className={'text-lg font-okra-bold'}>
-                            {busInfo.from} → {busInfo.to}
-                        </Text>
-                        <Text className={'text-sm text-gray-500 font-okra-medium'}>
-                            {new Date(busInfo.departureTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})} {new Date(busInfo.departureTime).toDateString()}
-                        </Text>
-                    </View>
-                </View>
-                <TouchableOpacity onPress={handleShare}>
-                    <ShareIcon color={'black'}/>
-                </TouchableOpacity>
-            </View>
+	return (
+		<SafeAreaView className={'flex-1 bg-white'}>
+			<View className={'flex-row items-center justify-between border-b-[1px] border-teal-800 bg-white p-4'}>
+				<View className={'flex-row items-center'}>
+					<TouchableOpacity onPress={goBack}>
+						<ArrowLeftIcon size={24} color={'#000'}/>
+					</TouchableOpacity>
+					<View className={'ml-4'}>
+						<Text className={'text-lg font-okra-bold'}>
+							{busInfo.from} → {busInfo.to}
+						</Text>
+						<Text className={'text-sm text-gray-500 font-okra-medium'}>
+							{new Date(busInfo.departureTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})} {new Date(busInfo.departureTime).toDateString()}
+						</Text>
+					</View>
+				</View>
+				<TouchableOpacity onPress={handleShare}>
+					<ShareIcon color={'black'}/>
+				</TouchableOpacity>
+			</View>
 
-            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 165}} className={'p-4 bg-teal-100'}>
-                <Seat selectedSeats={selectedSeats} seats={busInfo.seats} onSeatSelect={handleSeatSelection} />
+			<ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 165}} className={'p-4 bg-teal-100'}>
+				<Seat selectedSeats={selectedSeats} seats={busInfo.seats} onSeatSelect={handleSeatSelection}/>
 
-                <View className={'p-4 bg-white rounded-lg drop-shadow-md'}>
-                    <View className={'flex-row justify-between items-center mb-2'}>
-                        <Text className={'text-lg font-okra-medium'}>{busInfo.company}</Text>
-                        <View className={'flex-row items-center'}>
-                            <StarIcon size={18} color={'gold'} />
-                            <Text className={'ml-1 text-gray-600 text-sm font-okra-medium'}>
-                                {busInfo.rating} ({busInfo.totalReviews})
-                            </Text>
-                        </View>
-                    </View>
+				<View className={'p-4 bg-white rounded-lg drop-shadow-md'}>
+					<View className={'flex-row justify-between items-center mb-2'}>
+						<Text className={'text-lg font-okra-medium'}>{busInfo.company}</Text>
+						<View className={'flex-row items-center'}>
+							<StarIcon size={18} color={'gold'}/>
+							<Text className={'ml-1 text-gray-600 text-sm font-okra-medium'}>
+								{busInfo.rating} ({busInfo.totalReviews})
+							</Text>
+						</View>
+					</View>
 
-                    <Text className={'mb-1 text-sm text-gray-600 font-okra'}>{busInfo.busTags.join(', ')}</Text>
+					<Text className={'mb-1 text-sm text-gray-600 font-okra'}>{busInfo.busTags.join(', ')}</Text>
 
-                    <View className={'flex-row justify-between items-center mt-2'}>
-                        <View className={'items-start'}>
-                            <Text className={'text-lg font-okra-medium'}>{new Date(busInfo.departureTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</Text>
-                            <Text className={'text-sm text-gray-500 font-okra'}>Departure</Text>
-                        </View>
-                        <Text className={'text-sm text-gray-500 font-okra-medium'}>{generateHrMinFromDuration(busInfo.duration)}</Text>
-                        <View className={'items-end'}>
-                            <Text className={'text-lg font-okra-medium'}>{new Date(busInfo.arrivalTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</Text>
-                            <Text className={'text-sm text-gray-500 font-okra'}>Arrival</Text>
-                        </View>
-                    </View>
+					<View className={'flex-row justify-between items-center mt-2'}>
+						<View className={'items-start'}>
+							<Text className={'text-lg font-okra-medium'}>{new Date(busInfo.departureTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</Text>
+							<Text className={'text-sm text-gray-500 font-okra'}>Departure</Text>
+						</View>
+						<Text className={'text-sm text-gray-500 font-okra-medium'}>{generateHrMinFromDuration(busInfo.duration)}</Text>
+						<View className={'items-end'}>
+							<Text className={'text-lg font-okra-medium'}>{new Date(busInfo.arrivalTime).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}</Text>
+							<Text className={'text-sm text-gray-500 font-okra'}>Arrival</Text>
+						</View>
+					</View>
 
-                    <Text className={'mt-3 text-sm text-green-600'}>{busInfo.availableSeats} Seats</Text>
+					<Text className={'mt-3 text-sm text-green-600'}>{busInfo.availableSeats} Seats</Text>
 
-                    <View className={'flex-row items-center mt-2 gap-2'}>
-                        <Text className={'text-gray-400 line-through text-base font-okra-bold'}>₹{busInfo.originalPrice}</Text>
-                        <Text className={'text-black text-lg font-okra-bold '}>₹{busInfo.price}</Text>
-                    </View>
+					<View className={'flex-row items-center mt-2 gap-2'}>
+						<Text className={'text-gray-400 line-through text-base font-okra-bold'}>₹{busInfo.originalPrice}</Text>
+						<Text className={'text-black text-lg font-okra-bold '}>₹{busInfo.price}</Text>
+					</View>
 
-                    <View className={'flex-row gap-2 mt-3 flex-wrap'}>
-                        {busInfo.badges.map((badge: string, index: number) => (
-                            <CustomView key={index} className={'bg-yellow-200 px-3 py-1 rounded-full'}>
-                                <Text className={'text-yellow-700 font-okra-medium'}>{badge}</Text>
-                            </CustomView>
-                        ))}
-                    </View>
-                </View>
-            </ScrollView>
+					<View className={'flex-row gap-2 mt-3 flex-wrap'}>
+						{busInfo.badges.map((badge: string, index: number) => (
+							<CustomView key={index} className={'bg-yellow-200 px-3 py-1 rounded-full'}>
+								<Text className={'text-yellow-700 font-okra-medium'}>{badge}</Text>
+							</CustomView>
+						))}
+					</View>
+				</View>
+			</ScrollView>
 
-            <PaymentButton noOfSeats={selectedSeats.length} price={busInfo.price} onPay={handleOnPay} />
+			<PaymentButton noOfSeats={selectedSeats.length} price={busInfo.price} onPay={handleOnPay}/>
 
-            <TicketModal
-                isVisible={isTicketVisible}
-                onClose={async () => (await resetAndNavigate(screens.homeScreen), setIsTicketVisible(false))}
-                bookingInfo={{
-                    bus: busInfo,
-                    date: bookTicketMutation.data?.date,
-                    seatNumbers: bookTicketMutation.data?.seatNumbers,
-                    ticketExternalId: bookTicketMutation.data?.ticketExternalId,
-                    pnr: bookTicketMutation.data?.pnr,
-                    totalFare: bookTicketMutation.data?.totalFare,
-                }}
-            />
-        </View>
-    );
+			<TicketModal
+				isVisible={isTicketVisible}
+				onClose={async () => (await resetAndNavigate(screens.homeScreen), setIsTicketVisible(false))}
+				bookingInfo={{
+					bus: busInfo,
+					date: bookTicketMutation.data?.date,
+					seatNumbers: bookTicketMutation.data?.seatNumbers,
+					ticketExternalId: bookTicketMutation.data?.ticketExternalId,
+					pnr: bookTicketMutation.data?.pnr,
+					totalFare: bookTicketMutation.data?.totalFare,
+				}}
+			/>
+		</SafeAreaView>
+	);
 }
 
 export default SeatSelectionScreen;

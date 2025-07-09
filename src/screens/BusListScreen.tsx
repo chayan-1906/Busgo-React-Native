@@ -60,6 +60,7 @@ function BusListScreen() {
 			},
 			handleSelect);
 	}, [showActionSheetWithOptions, handleSelect, selectedSortBy.value]);
+
 	useEffect(() => {
 		refetch();
 	}, [refetch, selectedBusTags, selectedSortBy]);
