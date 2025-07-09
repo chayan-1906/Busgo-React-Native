@@ -22,13 +22,13 @@
 
 ## 📱 Screenshots
 
-<img src="https://github.com/user-attachments/assets/268bb0f8-f710-4483-b22f-f5d7a5b3deeb" alt="Login Screen" width="200" />
+<img src="https://github.com/user-attachments/assets/d1286b6f-4977-4cfa-a757-6a5fe37d3887" alt="Login Screen" width="200" />
 
 <img src="https://github.com/user-attachments/assets/c8498dd7-b78b-40cf-b9df-28de01548916" alt="Home Screen" width="200" />
 
 <img src="https://github.com/user-attachments/assets/d5144af2-3140-4812-ae4d-7c9cc8a7cbd7" alt="Date Picker" width="200" />
 
-<img src="https://github.com/user-attachments/assets/d1286b6f-4977-4cfa-a757-6a5fe37d3887" alt="BusListScreen" width="200" />
+<img src="https://github.com/user-attachments/assets/268bb0f8-f710-4483-b22f-f5d7a5b3deeb" alt="BusListScreen" width="200" />
 
 <img src="https://github.com/user-attachments/assets/5fc3aba5-f405-4c4b-8455-a2194d7b7f87" alt="Sort" width="200" />
 
@@ -40,7 +40,7 @@
 
 <div align="center">
 
-https://github.com/user-attachments/assets/ec339991-5aad-485f-ab64-a380b81f5adc
+https://github.com/user-attachments/assets/2d1f456f-f2e8-4fb2-80b9-7b5811e7922c
 
 *Watch the full app demo showcasing key features*
 
