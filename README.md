@@ -48,7 +48,7 @@ https://github.com/user-attachments/assets/2d1f456f-f2e8-4fb2-80b9-7b5811e7922c
 
 ## 📱 Download & Try
 
-[**Download APK**](https://github.com/chayan-1906/Busgo-React-Native/releases/latest)
+[**Download APK**](https://github.com/chayan-1906/Busgo-React-Native/releases/download/v2.0.0/busgo-expo.apk)
 
 ## 🏗️ Tech Stack
 
