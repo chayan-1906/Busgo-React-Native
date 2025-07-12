@@ -247,7 +247,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 **Padmanabha Das**
 
 - GitHub: [@chayan-1906](https://github.com/chayan-1906)
-- LinkedIn: [Chayan Ranjan Das](https://www.linkedin.com/in/padmanabha-das-59bb2019b/)
+- LinkedIn: [Chayan Das](https://www.linkedin.com/in/padmanabha-das-59bb2019b/)
 - Email: padmanabhadas9647@gmail.com
 
 ## 🌟 Show Your Support
