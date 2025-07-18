@@ -7,6 +7,8 @@
 
 > A sleek, modern bus booking application built with React Native CLI, featuring Google Sign-In, interactive seat selection, and seamless booking management with production-ready architecture.
 
+![logo](https://raw.githubusercontent.com/chayan-1906/Busgo-React-Native/expo-prebuild/assets/images/logo_t.png)
+
 ## ✨ Features
 
 - 🎨 **Modern UI/UX** - Tailwind CSS with custom Okra typography
